@@ -5,9 +5,16 @@ public class Player {
     public int balance;
     public ArrayList<Property> properties = new ArrayList<>();
     public Block currentBlock;
-    private int outOfJailCards;
+    public int outOfJailCards;
     public int numOfDoublesInARow;
 
+    public Player(int balance, ArrayList<Property> properties, Block currentBlock, int outOfJailCards, int  numOfDoublesInARow {
+        this.balance = balance;
+        this.properties = properties;
+        this.currentBlock = currentBlock;
+        this.outOfJailCards = outOfJailCards;
+        this.numOfDoublesInARow = numOfDoublesInARow;
+    }
     public void exitPrisonWithDice() {
         Jail.playersInJail.remove(GameBoard.currentPlayer);
     }
@@ -44,7 +51,7 @@ public class Player {
         }
     }
 
-    public void receiveStartPayment(Player player) {
+    public  void receiveStartPayment() {
         int startPayment = 100;
         this.balance += startPayment;
     }
