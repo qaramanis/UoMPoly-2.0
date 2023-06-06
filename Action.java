@@ -45,7 +45,7 @@ public class Action extends Block {
                     Jail.sendToJail(player);
                     break;
                 case 6:
-                    currentPosition = 0;
+                    GameBoard.movePlayer(player, 0, false);
                     player.receiveStartPayment();
                     break;
                 case 7:
@@ -73,7 +73,7 @@ public class Action extends Block {
                 case 10:
                     if (currentPosition > 11)
                         player.receiveStartPayment();
-                    currentPosition = 11;
+                    GameBoard.movePlayer(player, 11, false);
                     break;
                 case 11:
                     for (Player p : GameBoard.players) {
@@ -142,17 +142,13 @@ public class Action extends Block {
                     int payment = 40 * desks + 115 * boards;
                 }
                 case 14 -> {
-                    currentPosition = 0;
+                    GameBoard.movePlayer(player,0, false);
                     player.receiveStartPayment();
                 }
                 default -> player.balance += 200;
             }
         }
 
-    }
-
-    public void executeDecision(int number) {
-        //needs connection to database in order to hardcode the executions
     }
 
     public int getRandomWithExclusion(Random rnd, int start, int end, int... exclude){

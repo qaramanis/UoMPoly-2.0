@@ -34,14 +34,17 @@ public class MainBoard extends JFrame {
     public MainBoard(GameBoard board){
         this.board = board;
 
+
         setContentPane(container);
         setTitle("UoMPoly");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1180, 1080);
         setVisible(true);
 
+
         currentPos.setText(board.currentPlayer.currentBlock.blockPosition + "");
     }
+
 
 
 
