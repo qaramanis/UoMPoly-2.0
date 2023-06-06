@@ -7,7 +7,9 @@ abstract class Property extends Block{
     public Property(int position, String title, int cost, Player owner){
         super(position, title);
         this.cost = cost;
+    
         this.mortgageValue = cost / 2;
+
         this.owner = owner;
     }
 
