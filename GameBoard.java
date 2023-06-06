@@ -3,120 +3,126 @@ import java.util.*;
 public class GameBoard{
     private int numberOfPlayers;
     static ArrayList<Player> players = new ArrayList();
-    static Player currentPlayer = new Player(//add info);
+    static Player currentPlayer;
     private static Block[] blockTable = new Block[40];
 
     public GameBoard(int numberOfPlayers){
         this.numberOfPlayers = numberOfPlayers;
         for(int i=0 ; i<numberOfPlayers; i++){
             Player p = new Player(1500, blockTable[0], i+1);
+            players.add(p);
         }
+        currentPlayer = players.get(0);
     }
 
-    public static void GameLoop(){
+    public void GameLoop(){
         int[] exclude;
+
         do {
-            for(Player player : players){
-                currentPlayer = player;
+
+            //for(Player player : players) {
+
                 int[] dice = currentPlayer.rollTheDice();
-                if(checkIfDoubles(dice))
-                    currentPlayer.numOfDoublesInARow ++;
-                if(checkIfThreeDoublesInARow(currentPlayer.numOfDoublesInARow))
+                if (checkIfDoubles(dice))
+                    currentPlayer.numOfDoublesInARow++;
+                if (checkIfThreeDoublesInARow(currentPlayer.numOfDoublesInARow))
                     Jail.sendToJail(currentPlayer);
                 int diceSum = dice[0] + dice[1];
-                if(Jail.isInJail(currentPlayer))
+                if (Jail.isInJail(currentPlayer))
                     break;
-                else{
+                else {
                     boolean isRelative = true;
                     movePlayer(currentPlayer, diceSum, isRelative);
-                    if(currentPlayer.currentBlock instanceof Room){
+                    if (currentPlayer.currentBlock instanceof Room) {
                         if (currentPlayer.ownsProperty(currentPlayer.currentBlock)
-                                && canBuildDesk((Room)currentPlayer.currentBlock, currentPlayer)){
+                                && canBuildDesk((Room) currentPlayer.currentBlock, currentPlayer)) {
                             //ask player if he wants to build desk
                             //use buildDesk accordingly
-                        } else if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)){
+                        } else if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)) {
                             boolean ownerExists = false;
-                            for (Player p : players){
+                            for (Player p : players) {
                                 if (p.equals(currentPlayer))
                                     continue;
-                                else{
+                                else {
                                     if (p.ownsProperty(currentPlayer.currentBlock)) {
-                                        if (currentPlayer.balance >= ((Room) currentPlayer.currentBlock).calculateRent()){
+                                        if (currentPlayer.balance >= ((Room) currentPlayer.currentBlock).calculateRent()) {
                                             currentPlayer.balance -= ((Room) currentPlayer.currentBlock).calculateRent();
+                                            checkBankruptcy(currentPlayer.getBalance());
                                             p.balance += ((Room) currentPlayer.currentBlock).calculateRent();
-                                        }else {
-                                            GameBoard.players.remove(player);
+                                        } else {
+                                            players.remove(currentPlayer);
                                         }
                                         ownerExists = true;
                                         break;
                                     }
                                 }
                             }
-                            if (ownerExists == false){
+                            if (!ownerExists) {
                                 //ask player if he wants to buy Room
-                                //use buyProperty accordingly
+
                             }
                         }
-                    }else if (currentPlayer.currentBlock instanceof Service){
-                        if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)){
+                    } else if (currentPlayer.currentBlock instanceof Service) {
+                        if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)) {
                             boolean ownerExists = false;
-                            for (Player p : players){
+                            for (Player p : players) {
                                 if (p.equals(currentPlayer))
                                     continue;
-                                else{
+                                else {
                                     if (p.ownsProperty(currentPlayer.currentBlock)) {
-                                        if (currentPlayer.balance >= ((Service) currentPlayer.currentBlock).calculateRent(p,diceSum)){
-                                            currentPlayer.balance -= ((Service) currentPlayer.currentBlock).calculateRent(p,diceSum);
+                                        if (currentPlayer.balance >= ((Service) currentPlayer.currentBlock).calculateRent(p, diceSum)) {
+                                            currentPlayer.balance -= ((Service) currentPlayer.currentBlock).calculateRent(p, diceSum);
                                             p.balance += ((Room) currentPlayer.currentBlock).calculateRent();
-                                        }else {
-                                            GameBoard.players.remove(player);
+                                        } else {
+                                            players.remove(currentPlayer);
                                         }
                                         ownerExists = true;
                                         break;
                                     }
                                 }
                             }
-                            if (!ownerExists){
+                            if (!ownerExists) {
                                 //ask player if he wants to buy Transport
                                 //use buyProperty accordingly
                             }
                         }
-                    }else if (currentPlayer.currentBlock instanceof Transport){
-                        if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)){
+                    } else if (currentPlayer.currentBlock instanceof Transport) {
+                        if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)) {
                             boolean ownerExists = false;
-                            for (Player p : players){
+                            for (Player p : players) {
                                 if (p.equals(currentPlayer))
                                     continue;
-                                else{
+                                else {
                                     if (p.ownsProperty(currentPlayer.currentBlock)) {
-                                        if (currentPlayer.balance >= ((Transport) currentPlayer.currentBlock).calculateRent(p)){
+                                        if (currentPlayer.balance >= ((Transport) currentPlayer.currentBlock).calculateRent(p)) {
                                             currentPlayer.balance -= ((Transport) currentPlayer.currentBlock).calculateRent(p);
                                             p.balance += ((Room) currentPlayer.currentBlock).calculateRent();
-                                        }else {
-                                            GameBoard.players.remove(player);
+                                        } else {
+                                            players.remove(currentPlayer);
                                         }
                                         ownerExists = true;
                                         break;
                                     }
                                 }
                             }
-                            if (!ownerExists){
+                            if (!ownerExists) {
                                 //ask player if he wants to buy Transport
-                                if(currentPlayer.balance >= ((Property)currentPlayer.currentBlock).cost){
-                                    currentPlayer.BuyProperty((Property)currentPlayer.currentBlock);
+                                if (currentPlayer.balance >= ((Property) currentPlayer.currentBlock).cost) {
+                                    currentPlayer.BuyProperty((Property) currentPlayer.currentBlock);
                                 }
                             }
                         }
-                    }else if (currentPlayer.currentBlock instanceof Tax) {
-                        ((Tax)currentPlayer.currentBlock).payTax(currentPlayer);
-                    }else if (currentPlayer.currentBlock instanceof Action){
+                    } else if (currentPlayer.currentBlock instanceof Tax) {
+                        ((Tax) currentPlayer.currentBlock).payTax(currentPlayer);
+                    } else if (currentPlayer.currentBlock instanceof Action) {
 
                     }
                 }
 
                 //needs break in case of currentPlayer bankruptcy
-            }
-        }while(true);
+            //}
+            updateTurn();
+        }while(numberOfPlayers > 1);
     }
 
     static boolean checkIfDoubles(int[] dice){
@@ -203,5 +209,16 @@ public class GameBoard{
         return a;
     }
 
-    public void updateTurn
+    public boolean checkBankruptcy(int balance){
+        boolean result = balance < 0;
+        return result;
+    }
+
+
+    public void updateTurn(){
+        if(currentPlayer.getPlayerID() == numberOfPlayers)
+            currentPlayer = players.get(0);
+        else
+            currentPlayer = players.get(currentPlayer.getPlayerID() + 1);
+    }
 }
