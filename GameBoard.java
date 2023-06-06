@@ -1,11 +1,20 @@
+import java.lang.reflect.Array;
 import java.util.*;
 public class GameBoard{
     private int numberOfPlayers;
     static ArrayList<Player> players = new ArrayList();
-    static Player currentPlayer = new Player();
-    private Block[] blockTable = new Block[40];
+    static Player currentPlayer = new Player(//add info);
+    private static Block[] blockTable = new Block[40];
 
-    public static void GameBoard(){
+    public GameBoard(int numberOfPlayers){
+        this.numberOfPlayers = numberOfPlayers;
+        for(int i=0 ; i<numberOfPlayers; i++){
+            Player p = new Player(1500, blockTable[0], i+1);
+        }
+    }
+
+    public static void GameLoop(){
+        int[] exclude;
         do {
             for(Player player : players){
                 currentPlayer = player;
@@ -67,7 +76,7 @@ public class GameBoard{
                                     }
                                 }
                             }
-                            if (ownerExists == false){
+                            if (!ownerExists){
                                 //ask player if he wants to buy Transport
                                 //use buyProperty accordingly
                             }
@@ -91,16 +100,17 @@ public class GameBoard{
                                     }
                                 }
                             }
-                            if (ownerExists == false){
+                            if (!ownerExists){
                                 //ask player if he wants to buy Transport
-                                //use buyProperty accordingly
+                                if(currentPlayer.balance >= ((Property)currentPlayer.currentBlock).cost){
+                                    currentPlayer.BuyProperty((Property)currentPlayer.currentBlock);
+                                }
                             }
                         }
-                    }else if (currentPlayer.currentBlock instanceof Tax){
-                        //gui interaction to choose between 10% of balance or 200$
-                        //use payTax accordingly
+                    }else if (currentPlayer.currentBlock instanceof Tax) {
+                        ((Tax)currentPlayer.currentBlock).payTax(currentPlayer);
                     }else if (currentPlayer.currentBlock instanceof Action){
-                        //needs connection to database in order to identify Decision or Chance
+
                     }
                 }
 
@@ -131,13 +141,11 @@ public class GameBoard{
     }
 
     static void movePlayer(Player player, int number, boolean isRelative){
+        int currentPos = player.currentBlock.blockPosition;
         if (isRelative){
-            player.currentBlock.blockPosition += number;
-            if (player.currentBlock.blockPosition >= 40)
-                player.currentBlock.blockPosition -= 40;
-            //needs database input for block number
+            player.currentBlock = blockTable[(currentPos+ number)%40];
         }else{
-            //same here, needs database input
+            player.currentBlock = blockTable[number];
         }
     }
 
@@ -156,10 +164,7 @@ public class GameBoard{
 
     static boolean canBuildBoard(Room room, Player player){
         boolean result;
-        if (player.ownsProperty(room) && room.numberOfDesks == 4)
-            result = true;
-        else
-            result = false;
+        result = player.ownsProperty(room) && room.numberOfDesks == 4;
         return result;
     }
 
@@ -180,4 +185,23 @@ public class GameBoard{
 
         return rooms;
     }
+
+    public int getRandomWithExclusion(Random rnd, int start, int end, int... exclude){
+        int random = start + rnd.nextInt(16 - exclude.length);
+        for(int ex : exclude){
+            if(random < ex){
+                break;
+            }
+            random ++;
+        }
+        return random;
+    }
+
+    public int[] addElement(int[] a, int e){
+        a = Arrays.copyOf(a, a.length + 1);
+        a[a.length - 1] = e;
+        return a;
+    }
+
+    public void updateTurn
 }

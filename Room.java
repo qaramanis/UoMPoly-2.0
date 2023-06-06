@@ -8,8 +8,21 @@ public class Room extends Property {
     private String color;
     public int numberOfDesks;
     private int deskCost;
-    private boolean hasBoard;
+    public boolean hasBoard;
     private int boardCost;
+
+    public Room(int cost, int mortgageValue, Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int deskCost, int boardCost){
+        super(cost, mortgageValue, position, owner);
+        this.rent = rent;
+        this.rentWithOneDesk = rentWithOneDesk;
+        this.rentWithTwoDesks = rentWithTwoDesks;
+        this.rentWithThreeDesks = rentWithThreeDesks;
+        this.rentWithFourDesks = rentWithFourDesks;
+        this.rentWithBoard = rentWithBoard;
+        this.color = color;
+        this.deskCost = deskCost;
+        this.boardCost = boardCost;
+    }
 
     public String getColor() {
         return this.color;
@@ -48,7 +61,6 @@ public class Room extends Property {
     public void sellDesk() {
         if (this.numberOfDesks > 0) {
             this.numberOfDesks--;
-            super.getOwner();
             owner.balance = +deskCost;
         }
     }
@@ -61,7 +73,7 @@ public class Room extends Property {
     public void sellBoard(Player owner) {
         if (this.hasBoard) {
             this.hasBoard = false;
-            super.getOwner();
+
             owner.balance = +boardCost;
         }
     }
