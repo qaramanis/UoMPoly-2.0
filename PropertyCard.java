@@ -31,13 +31,15 @@ public class PropertyCard extends JPanel {
         propAttributes = new DefaultListModel<String>();
 
         if(prop instanceof Room){
-            propAttributes.addElement("Τιμή: " + prop.cost);
-            propAttributes.addElement("Ενοίκιο: " + ((Room) prop).getRent());
-            propAttributes.addElement("Ενοίκιο με 1 έδρανο: " + ((Room) prop).getRentWithOneDesk());
-            propAttributes.addElement("Ενοίκιο με 2 έδρανα: " + ((Room) prop).getRentWithTwoDesks());
-            propAttributes.addElement("Ενοίκιο με 3 έδρανα: " + ((Room) prop).getRentWithThreeDesks());
-            propAttributes.addElement("Ενοίκιο με 4 έδρανα: " + ((Room) prop).getRentWithFourDesks());
-            propAttributes.addElement("Ενοίκιο με πίνακα: " + ((Room) prop).getRentWithBoard());
+            Room r = (Room)prop;
+            propAttributes.addElement("Τιμή: " + r.cost);
+            propAttributes.addElement("Ενοίκιο: " + r.getRent());
+            propAttributes.addElement("Ενοίκιο με 1 έδρανο: " + r.getRentWithOneDesk());
+            propAttributes.addElement("Ενοίκιο με 2 έδρανα: " + r.getRentWithTwoDesks());
+            propAttributes.addElement("Ενοίκιο με 3 έδρανα: " + r.getRentWithThreeDesks());
+            propAttributes.addElement("Ενοίκιο με 4 έδρανα: " + r.getRentWithFourDesks());
+            propAttributes.addElement("Ενοίκιο με πίνακα: " + r.getRentWithBoard());
+            numberOfDesksLabel.setText(Integer.toString(r.numberOfDesks));
         }
         if(prop instanceof Transport){
             propAttributes.addElement("Τιμή: " + prop.cost);
@@ -48,6 +50,8 @@ public class PropertyCard extends JPanel {
             desksWrapper.setVisible(false);
             boardsWrapper.setVisible(false);
         }
+
+        list1.setModel(propAttributes);
 
         updateMortgageInfo();
         propertyNameLabel.setText(prop.getBlockTitle());
@@ -64,7 +68,14 @@ public class PropertyCard extends JPanel {
                     prop.mortgageProperty();
                 }
                 updateMortgageInfo();
-//                mBoard.updatePlayer(prop.owner);
+                mBoard.updatePlayer(prop.owner);
+            }
+        });
+        buyDeskBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((Room)prop).buildDesk();
+                updateNumberOfDesks();
             }
         });
     }
@@ -75,6 +86,10 @@ public class PropertyCard extends JPanel {
         }else {
             mortgageBtn.setText("Υποθήκευση Ιδιοκτησίας");
         }
+    }
+
+    private void updateNumberOfDesks(){
+        numberOfDesksLabel.setText(((Room)prop).numberOfDesks + "");
     }
 
     private void createUIComponents() {

@@ -12,19 +12,17 @@ public class GameBoard implements Runnable {
     public GameBoard(int numberOfPlayers, MainBoard mainGUI) {
         this.mainGUI = mainGUI;
         this.numberOfPlayers = numberOfPlayers;
-        blockTable[0] = new Start(0, "test");
-        blockTable[1] = new Room(150, "Αιθ. 5", 80, null, 1, 10, 20, 30, 40, 50, 60, "red", 10, 20);
-        blockTable[2] = new Room(110, "Αιθ. 8", 90, null, 2, 10, 20, 30, 40, 50, 60, "blue", 10, 20);
+
         for (int i = 0; i < numberOfPlayers; i++) {
             Player p = new Player(1500, blockTable[0], i + 1);
             players.add(p);
         }
+
         currentPlayer = players.get(0);
-        ((Property)blockTable[1]).setOwner(currentPlayer);
-        ((Property)blockTable[2]).setOwner(currentPlayer);
     }
 
     public static Player getCurrentPlayer() {
+
         return currentPlayer;
     }
 
@@ -37,9 +35,9 @@ public class GameBoard implements Runnable {
     @Override
     public void run() {
         int[] exclude;
-
+        mainGUI.updateInfo(currentPlayer);
         do {
-            mainGUI.updateInfo(currentPlayer);
+
             gameLoop();
         } while (numberOfPlayers > 1);
     }

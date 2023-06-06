@@ -21,14 +21,6 @@ public class PropertiesPane extends JFrame {
             PropertyCard pCard = new PropertyCard(p, mBoard);
             scrollContainer.add(pCard);
         }
-        for(Property p :properties){
-            PropertyCard pCard = new PropertyCard(p, mBoard);
-            scrollContainer.add(pCard);
-        }
-        for(Property p :properties){
-            PropertyCard pCard = new PropertyCard(p, mBoard);
-            scrollContainer.add(pCard);
-        }
 
         playerIdLabel.setText(Integer.toString(player.getPlayerID()));
         setContentPane(container);

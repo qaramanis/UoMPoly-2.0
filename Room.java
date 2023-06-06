@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class Room extends Property {
     private int rent;
     private int rentWithOneDesk;
@@ -6,13 +8,13 @@ public class Room extends Property {
     private int rentWithFourDesks;
     private int rentWithBoard;
     private String color;
-    public int numberOfDesks;
+    public int numberOfDesks = 0;
     private int deskCost;
     public boolean hasBoard;
     private int boardCost;
 
-    public Room(int cost, String title, int mortgageValue, Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int deskCost, int boardCost){
-        super(position, title, cost, mortgageValue, owner);
+    public Room(int cost, String title, Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int deskCost, int boardCost){
+        super(position, title, cost, owner);
         this.rent = rent;
         this.rentWithOneDesk = rentWithOneDesk;
         this.rentWithTwoDesks = rentWithTwoDesks;
@@ -65,7 +67,7 @@ public class Room extends Property {
         if (canBuildDesk()){
             this.owner.balance -= deskCost;
             numberOfDesks++;
-        }
+        }else JOptionPane.showMessageDialog(null, "Δεν μπορείς να χτίσεις έδρανο.", "Ωχ! Κάτι πήγε στραβά.", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void sellDesk() {

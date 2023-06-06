@@ -14,6 +14,8 @@ public class StartingScreen extends JFrame {
         setContentPane(mainPanel);
         setTitle("Έναρξη Παιχνιδιού");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
+        setLocationRelativeTo(null);
         setSize(600, 400);
         setVisible(true);
         startBtn.addActionListener(new ActionListener() {
