@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 public class GameBoard{
     private int numberOfPlayers;
@@ -5,7 +6,14 @@ public class GameBoard{
     static Player currentPlayer = new Player(//add info);
     private static Block[] blockTable = new Block[40];
 
-    public static void GameBoard(){
+    public GameBoard(int numberOfPlayers){
+        this.numberOfPlayers = numberOfPlayers;
+        for(int i=0 ; i<numberOfPlayers; i++){
+            Player p = new Player(1500, blockTable[0], i+1);
+        }
+    }
+
+    public static void GameLoop(){
         int[] exclude;
         do {
             for(Player player : players){
@@ -156,10 +164,7 @@ public class GameBoard{
 
     static boolean canBuildBoard(Room room, Player player){
         boolean result;
-        if (player.ownsProperty(room) && room.numberOfDesks == 4)
-            result = true;
-        else
-            result = false;
+        result = player.ownsProperty(room) && room.numberOfDesks == 4;
         return result;
     }
 
@@ -197,4 +202,6 @@ public class GameBoard{
         a[a.length - 1] = e;
         return a;
     }
+
+    public void updateTurn
 }

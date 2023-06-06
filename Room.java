@@ -12,7 +12,7 @@ public class Room extends Property {
     private int boardCost;
 
     public Room(int cost, int mortgageValue, Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int deskCost, int boardCost){
-        super(cost, mortgageValue, owner, position);
+        super(cost, mortgageValue, position, owner);
         this.rent = rent;
         this.rentWithOneDesk = rentWithOneDesk;
         this.rentWithTwoDesks = rentWithTwoDesks;
@@ -61,7 +61,6 @@ public class Room extends Property {
     public void sellDesk() {
         if (this.numberOfDesks > 0) {
             this.numberOfDesks--;
-            super.getOwner();
             owner.balance = +deskCost;
         }
     }
@@ -74,7 +73,7 @@ public class Room extends Property {
     public void sellBoard(Player owner) {
         if (this.hasBoard) {
             this.hasBoard = false;
-            super.getOwner();
+
             owner.balance = +boardCost;
         }
     }

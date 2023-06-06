@@ -7,13 +7,12 @@ public class Player {
     public Block currentBlock;
     public int outOfJailCards;
     public int numOfDoublesInARow;
+    private int playerID;
 
-    public Player(int balance, ArrayList<Property> properties, Block currentBlock, int outOfJailCards, int  numOfDoublesInARow {
+    public Player(int balance, Block currentBlock, int playerID){
         this.balance = balance;
-        this.properties = properties;
         this.currentBlock = currentBlock;
-        this.outOfJailCards = outOfJailCards;
-        this.numOfDoublesInARow = numOfDoublesInARow;
+        this.playerID = playerID;
     }
     public void exitPrisonWithDice() {
         Jail.playersInJail.remove(GameBoard.currentPlayer);
