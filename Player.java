@@ -7,7 +7,15 @@ public class Player {
     public Block currentBlock;
     public int outOfJailCards;
     public int numOfDoublesInARow;
+
     private int playerID;
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public int getBalance(){
+        return balance;
+    }
 
     public Player(int balance, Block currentBlock, int playerID){
         this.balance = balance;
