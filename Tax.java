@@ -1,7 +1,8 @@
 public class Tax extends Block {
-    public double taxValue;
+    private double taxValue;
 
-    public Tax(double taxValue) {
+    public Tax(int position, double taxValue) {
+        super(position);
         this.taxValue = taxValue;
     }
 
