@@ -7,7 +7,6 @@ public class Player {
     public Block currentBlock;
     public int outOfJailCards;
     public int numOfDoublesInARow;
-
     private int playerID;
     public int getPlayerID() {
         return playerID;

@@ -147,8 +147,9 @@ public class Action extends Block {
                 }
                 default -> player.balance += 200;
             }
+        }else if (this.type.equals("go_to_jail")){
+            Jail.sendToJail(player);
         }
-
     }
 
     public int getRandomWithExclusion(Random rnd, int start, int end, int... exclude){

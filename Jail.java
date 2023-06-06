@@ -19,7 +19,7 @@ public class Jail extends Block{
 
     static void sendToJail(Player player){
         playersInJail.add(player);
-        player.currentBlock.blockPosition = 30; //jail is on no. 30
+        GameBoard.movePlayer(player,30, false); //jail is on no. 30
     }
 
 

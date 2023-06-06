@@ -7,12 +7,10 @@ public class Room extends Property {
     private int rentWithBoard;
     private String color;
     public int numberOfDesks;
-    private int deskCost;
+    private int structureCost;
     public boolean hasBoard;
-    private int boardCost;
-
-    public Room(int cost, String title, int mortgageValue, Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int deskCost, int boardCost){
-        super(position, title, cost, mortgageValue, owner);
+    public Room(int cost, String title,  Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int structureCost){
+        super(position, title, cost, owner);
         this.rent = rent;
         this.rentWithOneDesk = rentWithOneDesk;
         this.rentWithTwoDesks = rentWithTwoDesks;
@@ -20,8 +18,7 @@ public class Room extends Property {
         this.rentWithFourDesks = rentWithFourDesks;
         this.rentWithBoard = rentWithBoard;
         this.color = color;
-        this.deskCost = deskCost;
-        this.boardCost = boardCost;
+        this.structureCost = structureCost;
     }
 
     public String getColor() {
@@ -54,16 +51,16 @@ public class Room extends Property {
     }
 
     public boolean canBuildDesk() {
-        return GameBoard.checkIfPlayerOwnsColorGroup(this, this.owner) && this.numberOfDesks < 4 && this.owner.balance >= deskCost && this.owner.currentBlock.equals(this);
+        return GameBoard.checkIfPlayerOwnsColorGroup(this, this.owner) && this.numberOfDesks < 4 && this.owner.balance >= structureCost && this.owner.currentBlock.equals(this);
     }
 
     public boolean canBuildBoard() {
-        return this.numberOfDesks == 4 && this.owner.balance >= boardCost && this.owner.currentBlock.equals(this);
+        return this.numberOfDesks == 4 && this.owner.balance >= structureCost && this.owner.currentBlock.equals(this);
     }
 
     public void buildDesk() {
         if (canBuildDesk()){
-            this.owner.balance -= deskCost;
+            this.owner.balance -= structureCost;
             numberOfDesks++;
         }
     }
@@ -71,7 +68,7 @@ public class Room extends Property {
     public void sellDesk() {
         if (this.numberOfDesks > 0) {
             this.numberOfDesks--;
-            this.owner.balance += (deskCost / 2);
+            this.owner.balance += (structureCost / 2);
         }
     }
 
@@ -84,7 +81,7 @@ public class Room extends Property {
         if (this.hasBoard) {
             this.hasBoard = false;
 
-            owner.balance = +boardCost;
+            owner.balance = +structureCost;
         }
     }
 
@@ -133,8 +130,8 @@ public class Room extends Property {
         return numberOfDesks;
     }
 
-    public int getDeskCost() {
-        return deskCost;
+    public int getstructureCost() {
+        return structureCost;
     }
 
     public boolean isHasBoard() {
@@ -142,7 +139,7 @@ public class Room extends Property {
     }
 
     public int getBoardCost() {
-        return boardCost;
+        return structureCost;
     }
 }
 
