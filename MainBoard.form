@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="container" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="1224" height="952"/>
+      <xy x="20" y="20" width="1224" height="1056"/>
     </constraints>
     <properties>
       <enabled value="true"/>
@@ -11,7 +11,7 @@
     <border type="none"/>
     <children>
       <grid id="f298d" binding="top" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+        <margin top="0" left="60" bottom="0" right="60"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="100"/>
@@ -21,7 +21,8 @@
         <properties/>
         <border type="line"/>
         <children>
-          <grid id="72b5c" binding="topLeft" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="72b5c" binding="topLeft" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -29,20 +30,27 @@
             <border type="none"/>
             <children>
               <component id="8bd86" class="javax.swing.JLabel">
-                <constraints/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
                 <properties>
+                  <font name="Inter" size="14"/>
                   <text value="Παίκτης: "/>
                 </properties>
               </component>
               <component id="b7a99" class="javax.swing.JLabel" binding="playerNumber">
-                <constraints/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
                 <properties>
-                  <text value="1"/>
+                  <font name="Inter" size="16"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>
           </grid>
-          <grid id="a68ae" binding="topMiddle" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="a68ae" binding="topMiddle" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="15" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -50,14 +58,20 @@
             <border type="none"/>
             <children>
               <component id="3cbd3" class="javax.swing.JLabel">
-                <constraints/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
                 <properties>
+                  <font name="Inter" size="14"/>
                   <text value="Πορτοφόλι: "/>
                 </properties>
               </component>
               <component id="a7854" class="javax.swing.JLabel" binding="currentBalance">
-                <constraints/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
                 <properties>
+                  <font name="Inter" size="16"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -73,9 +87,12 @@
             <children>
               <component id="8809f" class="javax.swing.JButton" binding="propertyBtn">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-1"/>
+                  <font name="Inter" size="14" style="0"/>
+                  <foreground color="-16777216"/>
                   <text value="Οι ιδιοκτησίες μου"/>
                 </properties>
               </component>
@@ -83,12 +100,11 @@
           </grid>
         </children>
       </grid>
-      <grid id="de10a" binding="middle" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="de10a" binding="middle" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <minimum-size width="800" height="800"/>
-            <preferred-size width="960" height="960"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true">
+            <minimum-size width="600" height="600"/>
+            <preferred-size width="800" height="800"/>
           </grid>
         </constraints>
         <properties/>
@@ -99,6 +115,7 @@
           <component id="a24b5" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
               <enabled value="true"/>
@@ -111,17 +128,17 @@
         </children>
       </grid>
       <grid id="b1947" binding="bottom" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+        <margin top="15" left="60" bottom="15" right="60"/>
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="-1" height="100"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <maximum-size width="-1" height="100"/>
           </grid>
         </constraints>
         <properties/>
         <border type="line"/>
         <children>
-          <grid id="4dc47" binding="dice" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="4dc47" binding="dice" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -129,14 +146,20 @@
             <border type="none"/>
             <children>
               <component id="410c" class="javax.swing.JLabel">
-                <constraints/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
                 <properties>
+                  <font name="Inter Medium" size="16"/>
                   <text value="Ζάρια: "/>
                 </properties>
               </component>
               <component id="d11ef" class="javax.swing.JLabel" binding="diceNumbers">
-                <constraints/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
                 <properties>
+                  <font name="Inter" size="16"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -163,6 +186,11 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-1"/>
+                      <enabled value="true"/>
+                      <font name="Inter" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                      <hideActionText value="false"/>
                       <text value="Ρίξε τα ζάρια"/>
                     </properties>
                   </component>
@@ -191,14 +219,14 @@
         </children>
       </grid>
       <grid id="bec6d" binding="tooltips" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+        <margin top="15" left="60" bottom="15" right="60"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
-        <border type="line"/>
+        <border type="none"/>
         <children>
-          <grid id="ba137" binding="tooltipLeft" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="ba137" binding="tooltipLeft" layout-manager="FlowLayout" hgap="0" vgap="5" flow-align="1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -208,12 +236,14 @@
               <component id="b0051" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
+                  <font name="Inter Medium" size="22"/>
                   <text value="Θέση: "/>
                 </properties>
               </component>
               <component id="e47bf" class="javax.swing.JLabel" binding="currentPos">
                 <constraints/>
                 <properties>
+                  <font name="Inter" size="16"/>
                   <text value=""/>
                 </properties>
               </component>

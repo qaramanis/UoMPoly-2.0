@@ -1,7 +1,8 @@
 abstract class Property extends Block{
     public int cost;
-    static int mortgageValue;
-    public static Player owner;
+    public int mortgageValue;
+    protected Player owner;
+    protected boolean isMortgaged = false;
 
     public Property(int position, String title, int cost, int mortgageValue, Player owner){
         super(position, title);
@@ -12,5 +13,21 @@ abstract class Property extends Block{
 
     public Player getOwner() {
         return owner;
+    }
+
+    public void setOwner(Player p){
+        this.owner = p;
+        p.properties.add(this);
+    }
+
+    public boolean isMortgaged() {
+        return isMortgaged;
+    }
+
+    public void mortgageProperty(){
+
+    }
+
+    public void unmortgageProperty(){
     }
 }

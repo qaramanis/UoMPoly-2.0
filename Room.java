@@ -12,7 +12,7 @@ public class Room extends Property {
     private int boardCost;
 
     public Room(int cost, String title, int mortgageValue, Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int deskCost, int boardCost){
-        super(cost, title, mortgageValue, position, owner);
+        super(position, title, cost, mortgageValue, owner);
         this.rent = rent;
         this.rentWithOneDesk = rentWithOneDesk;
         this.rentWithTwoDesks = rentWithTwoDesks;
@@ -53,15 +53,25 @@ public class Room extends Property {
         return return_value;
     }
 
+    public boolean canBuildDesk() {
+        return GameBoard.checkIfPlayerOwnsColorGroup(this, this.owner) && this.numberOfDesks < 4 && this.owner.balance >= deskCost && this.owner.currentBlock.equals(this);
+    }
+
+    public boolean canBuildBoard() {
+        return this.numberOfDesks == 4 && this.owner.balance >= boardCost && this.owner.currentBlock.equals(this);
+    }
+
     public void buildDesk() {
-        if (this.numberOfDesks < 4)
-            this.numberOfDesks++;
+        if (canBuildDesk()){
+            this.owner.balance -= deskCost;
+            numberOfDesks++;
+        }
     }
 
     public void sellDesk() {
         if (this.numberOfDesks > 0) {
             this.numberOfDesks--;
-            owner.balance = +deskCost;
+            this.owner.balance += (deskCost / 2);
         }
     }
 
@@ -76,6 +86,63 @@ public class Room extends Property {
 
             owner.balance = +boardCost;
         }
+    }
+
+    @Override
+    public void mortgageProperty(){
+        if(numberOfDesks == 0 && !hasBoard && !this.isMortgaged){
+            this.isMortgaged = true;
+            this.owner.balance += mortgageValue;
+        }
+    }
+
+    @Override
+    public void unmortgageProperty(){
+        int unmortgageCost = (int)(mortgageValue + (mortgageValue * 0.1));
+        if(this.isMortgaged && this.owner.balance >= unmortgageCost){
+            this.isMortgaged = false;
+            this.owner.balance -= unmortgageCost;
+        }
+    }
+
+    public int getRent() {
+        return rent;
+    }
+
+    public int getRentWithOneDesk() {
+        return rentWithOneDesk;
+    }
+
+    public int getRentWithTwoDesks() {
+        return rentWithTwoDesks;
+    }
+
+    public int getRentWithThreeDesks() {
+        return rentWithThreeDesks;
+    }
+
+    public int getRentWithFourDesks() {
+        return rentWithFourDesks;
+    }
+
+    public int getRentWithBoard() {
+        return rentWithBoard;
+    }
+
+    public int getNumberOfDesks() {
+        return numberOfDesks;
+    }
+
+    public int getDeskCost() {
+        return deskCost;
+    }
+
+    public boolean isHasBoard() {
+        return hasBoard;
+    }
+
+    public int getBoardCost() {
+        return boardCost;
     }
 }
 

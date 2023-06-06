@@ -1,5 +1,10 @@
 public class Transport extends Property {
 
+    public int rentWithOneTransportProperty = 25;
+    public int rentWithTwoTransportProperties = 50;
+    public int rentWithThreeTransportProperties = 100;
+    public int rentWithFourTransportProperties = 200;
+
     public Transport(int position, String title, int cost, int mortgageValue, Player owner){
         super(position, title, cost, mortgageValue, owner);
     }
@@ -10,10 +15,7 @@ public class Transport extends Property {
                 numberOfTransportProperties++;
         }
 
-        int rentWithOneTransportProperty = 25;
-        int rentWithTwoTransportProperties = 50;
-        int rentWithThreeTransportProperties = 100;
-        int rentWithFourTransportProperties = 200;
+
 
         switch (numberOfTransportProperties) {
             case 1:
