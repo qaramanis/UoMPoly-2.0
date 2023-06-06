@@ -4,10 +4,10 @@ abstract class Property extends Block{
     protected Player owner;
     protected boolean isMortgaged = false;
 
-    public Property(int position, String title, int cost, int mortgageValue, Player owner){
+    public Property(int position, String title, int cost, Player owner){
         super(position, title);
         this.cost = cost;
-        this.mortgageValue = mortgageValue;
+        this.mortgageValue = cost/2;
         this.owner = owner;
     }
 

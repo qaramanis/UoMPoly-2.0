@@ -5,8 +5,8 @@ public class Transport extends Property {
     public int rentWithThreeTransportProperties = 100;
     public int rentWithFourTransportProperties = 200;
 
-    public Transport(int position, String title, int cost, int mortgageValue, Player owner){
-        super(position, title, cost, mortgageValue, owner);
+    public Transport(int position, String title, int cost, Player owner){
+        super(position, title, cost, owner);
     }
     public double calculateRent(Player player) {
         int numberOfTransportProperties = 0;
