@@ -165,7 +165,7 @@
               </component>
             </children>
           </grid>
-          <grid id="a1e9a" binding="bottomButtons" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="a1e9a" binding="bottomButtons" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -173,47 +173,71 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="5b56" binding="rightButton" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
+              <component id="c7d47" class="javax.swing.JButton" binding="jailDiceBtn">
                 <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="c7d47" class="javax.swing.JButton" binding="diceBtn">
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <background color="-1"/>
-                      <enabled value="true"/>
-                      <font name="Inter" size="14" style="0"/>
-                      <foreground color="-16777216"/>
-                      <hideActionText value="false"/>
-                      <text value="Ρίξε τα ζάρια"/>
-                    </properties>
-                  </component>
-                </children>
-              </grid>
-              <grid id="d9975" binding="middleButton" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
+                <properties>
+                  <background color="-1"/>
+                  <enabled value="true"/>
+                  <font name="Inter" size="14" style="0"/>
+                  <foreground color="-16777216"/>
+                  <hideActionText value="false"/>
+                  <text value="Ρίξε τα ζάρια"/>
+                </properties>
+              </component>
+              <component id="59015" class="javax.swing.JButton" binding="buyPropBtn">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
-                <border type="none"/>
-                <children/>
-              </grid>
-              <grid id="6a34f" binding="LeftButton" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
+                <properties>
+                  <background color="-1"/>
+                  <enabled value="true"/>
+                  <font name="Inter" size="14" style="0"/>
+                  <foreground color="-16777216"/>
+                  <hideActionText value="false"/>
+                  <text value="Αγορά Ιδιοκτησίας"/>
+                </properties>
+              </component>
+              <component id="3cf7f" class="javax.swing.JButton" binding="jailPayBtn">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
-                <border type="none"/>
-                <children/>
-              </grid>
+                <properties>
+                  <background color="-1"/>
+                  <enabled value="true"/>
+                  <font name="Inter" size="14" style="0"/>
+                  <foreground color="-16777216"/>
+                  <hideActionText value="false"/>
+                  <text value="Πληρωμή αντιτίμου"/>
+                </properties>
+              </component>
+              <component id="1d8cf" class="javax.swing.JButton" binding="jailCardBtn">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1"/>
+                  <enabled value="true"/>
+                  <font name="Inter" size="14" style="0"/>
+                  <foreground color="-16777216"/>
+                  <hideActionText value="false"/>
+                  <text value="Χρήση κάρτας"/>
+                </properties>
+              </component>
+              <component id="80cf3" class="javax.swing.JButton" binding="endTurnBtn">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1"/>
+                  <enabled value="true"/>
+                  <font name="Inter" size="14" style="0"/>
+                  <foreground color="-16777216"/>
+                  <hideActionText value="false"/>
+                  <text value="Τέλος Σειράς"/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>
