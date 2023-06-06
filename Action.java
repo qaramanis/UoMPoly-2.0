@@ -3,14 +3,14 @@ public class Action extends Block {
 
     private String type;
 
-    public Action (String type, int position){
-        super(position);
+    public Action (String type, int position, String title){
+        super(position, title);
         this.type = type;
     }
 
     public void executeAction(int number, Player player) {
         int currentPosition = player.currentBlock.blockPosition;
-        if (this.type.equals("Chance")) {
+        if (this.type.equals("chance")) {
             switch (number) {
                 case 0:
                     GameBoard.movePlayer(player, 39, false);
@@ -107,7 +107,7 @@ public class Action extends Block {
                     player.balance -= 80;
             }
         }
-        else if(this.type.equals("Decision")){
+        else if(this.type.equals("decision")){
             switch (number) {
                 case 0 -> {
                     if (Jail.isInJail(player))

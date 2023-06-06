@@ -1,8 +1,8 @@
 public class Service extends Property {
 
     private int rent;
-    public Service(int position,int cost, int mortgageValue, Player owner, int rent){
-        super(position, cost, mortgageValue, owner);
+    public Service(int position, String title, int cost, int mortgageValue, Player owner, int rent){
+        super(position, title, cost, mortgageValue, owner);
         this.rent = rent;
     }
     public double calculateRent(Player player, int dice) {

@@ -11,8 +11,8 @@ public class Room extends Property {
     public boolean hasBoard;
     private int boardCost;
 
-    public Room(int cost, int mortgageValue, Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int deskCost, int boardCost){
-        super(cost, mortgageValue, position, owner);
+    public Room(int cost, String title, int mortgageValue, Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int deskCost, int boardCost){
+        super(cost, title, mortgageValue, position, owner);
         this.rent = rent;
         this.rentWithOneDesk = rentWithOneDesk;
         this.rentWithTwoDesks = rentWithTwoDesks;

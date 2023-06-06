@@ -23,17 +23,17 @@ public class Player {
         this.playerID = playerID;
     }
     public void exitPrisonWithDice() {
-        Jail.playersInJail.remove(GameBoard.currentPlayer);
+        Jail.playersInJail.remove(this);
     }
 
     public void exitPrisonWithCard() {
-        Jail.playersInJail.remove(GameBoard.currentPlayer);
+        Jail.playersInJail.remove(this);
         this.outOfJailCards--;
     }
 
     public void exitPrisonWithFine() {
         int fine = 100;
-        Jail.playersInJail.remove(GameBoard.currentPlayer);
+        Jail.playersInJail.remove(this);
         this.balance -= fine;
     }
 

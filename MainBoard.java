@@ -31,8 +31,7 @@ public class MainBoard extends JFrame {
 
     private GameBoard board;
 
-    public MainBoard(GameBoard board){
-        this.board = board;
+    public MainBoard(){
 
 
         setContentPane(container);
@@ -41,8 +40,10 @@ public class MainBoard extends JFrame {
         setSize(1180, 1080);
         setVisible(true);
 
+    }
 
-        currentPos.setText(board.currentPlayer.currentBlock.blockPosition + "");
+    public void updatePos(Block currBlock){
+        currentPos.setText(currBlock.blockPosition + " - " + currBlock.getBlockTitle());
     }
 
 

@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Jail extends Block{
     static ArrayList<Player> playersInJail = new ArrayList<>();
 
-    public Jail (ArrayList<Player> playersInJail, int position){
-        super(position);
+    public Jail (ArrayList<Player> playersInJail, int position, String title){
+        super(position, title);
         this.playersInJail = playersInJail;
     }
 

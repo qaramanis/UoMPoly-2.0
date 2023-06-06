@@ -21,7 +21,9 @@ public class StartingScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 int numOfPlayers = (int)spinner1.getValue();
-                new MainBoard(new GameBoard(numOfPlayers));
+                GameBoard board = new GameBoard(numOfPlayers, new MainBoard());
+                board.startGameThread();
+
             }
         });
     }
