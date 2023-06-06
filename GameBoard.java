@@ -3,7 +3,7 @@ import java.util.*;
 public class GameBoard{
     private int numberOfPlayers;
     static ArrayList<Player> players = new ArrayList();
-    static Player currentPlayer = new Player(//add info);
+    static Player currentPlayer;
     private static Block[] blockTable = new Block[40];
 
     public GameBoard(int numberOfPlayers){
@@ -203,5 +203,6 @@ public class GameBoard{
         return a;
     }
 
-    public void updateTurn
+    public void updateTurn(){
+    }
 }

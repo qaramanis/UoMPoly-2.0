@@ -29,13 +29,21 @@ public class MainBoard extends JFrame {
     private JPanel tooltipRight;
     private JLabel tooltipRightLabel;
 
-    public MainBoard(){
+    private GameBoard board;
+
+    public MainBoard(GameBoard board){
+        this.board = board;
+
         setContentPane(container);
         setTitle("UoMPoly");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1180, 1080);
         setVisible(true);
+
+        currentPos.setText(board.currentPlayer.currentBlock.blockPosition + "");
     }
+
+
 
 
 }
