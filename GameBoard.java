@@ -209,6 +209,7 @@ public class GameBoard{
         return a;
     }
 
+
     public boolean checkBankruptcy(int balance){
         boolean result = balance < 0;
         return result;
@@ -221,4 +222,3 @@ public class GameBoard{
         else
             currentPlayer = players.get(currentPlayer.getPlayerID() + 1);
     }
-}

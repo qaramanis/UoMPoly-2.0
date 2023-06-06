@@ -1,4 +1,8 @@
 public class Transport extends Property {
+
+    public Transport(int position, int cost, int mortgageValue, Player owner){
+        super(position, cost, mortgageValue, owner);
+    }
     public double calculateRent(Player player) {
         int numberOfTransportProperties = 0;
         for (Property p : player.properties) {

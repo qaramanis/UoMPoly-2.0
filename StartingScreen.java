@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StartingScreen extends JFrame {
     private JButton startBtn;
@@ -14,6 +16,14 @@ public class StartingScreen extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 400);
         setVisible(true);
+        startBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                int numOfPlayers = (int)spinner1.getValue();
+                new MainBoard(new GameBoard(numOfPlayers));
+            }
+        });
     }
 
 
