@@ -39,8 +39,8 @@ public class Player {
 
     public int[] rollTheDice() {
         int[] dice = new int[2];
-        dice[0] = (int) (Math.random() * 6) + 1;
-        dice[1] = (int) (Math.random() * 6) + 1;
+        dice[0] = (int)Math.floor(Math.random() * 7);
+        dice[1] = (int)Math.floor(Math.random() * 7);
         return dice;
     }
 

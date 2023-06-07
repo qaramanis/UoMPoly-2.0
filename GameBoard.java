@@ -8,10 +8,13 @@ public class GameBoard implements Runnable {
     private static Player currentPlayer;
     private static Block[] blockTable = new Block[40];
 
+    private boolean turnActive = true;
+
     private MainBoard mainGUI;
 
     public GameBoard(int numberOfPlayers, MainBoard mainGUI) {
         this.mainGUI = mainGUI;
+        mainGUI.setgBoard(this);
         this.numberOfPlayers = numberOfPlayers;
 
         createBlocks();
@@ -22,11 +25,6 @@ public class GameBoard implements Runnable {
         }
 
         currentPlayer = players.get(0);
-        ((Property) blockTable[1]).setOwner(currentPlayer);
-        ((Property) blockTable[3]).setOwner(currentPlayer);
-        ((Property) blockTable[5]).setOwner(currentPlayer);
-        ((Property) blockTable[12]).setOwner(currentPlayer);
-        currentPlayer.currentBlock = blockTable[1];
     }
 
     public static Player getCurrentPlayer() {
@@ -35,26 +33,28 @@ public class GameBoard implements Runnable {
     }
 
     public void startGameThread() {
-        gameLoop();
+//        gameLoop();
         gameThread = new Thread(this);
         gameThread.start();
+
     }
 
     @Override
     public void run() {
-        int[] exclude;
         mainGUI.updateInfo(currentPlayer);
-        do {
-
-            gameLoop();
-        } while (numberOfPlayers > 1);
+        while (numberOfPlayers > 1){
+            try {
+                gameLoop();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        };
     }
 
-    public void gameLoop(){
-
+    public void gameLoop() throws InterruptedException {
         mainGUI.updateInfo(currentPlayer);
-        int[] excludeChance;
-        int[] excludeDecision;
+        setTurnActive(true);
+
         int dice[] = currentPlayer.rollTheDice();
         int diceSum = dice[0] + dice[1];
         if(Jail.isInJail(currentPlayer)){
@@ -65,120 +65,24 @@ public class GameBoard implements Runnable {
                 Jail.removeFromJail(currentPlayer);
         }else{
             movePlayer(currentPlayer, diceSum, true);
+            mainGUI.updatePos();
         }
 
         Block currentBlock = currentPlayer.currentBlock;
-        if (currentBlock instanceof Property){
-            if (!((Property) currentBlock).owner.equals(currentPlayer) && ((Property) currentBlock).owner != null){
-                int rent = ((Property) currentBlock).calculateRent();
-                currentPlayer.payRent(((Property) currentBlock).owner, rent);
+        if (currentBlock instanceof Property prop){
+            if (prop.owner != null && !prop.owner.equals(currentPlayer)){
+                int rent = prop.calculateRent();
+                currentPlayer.payRent(prop.owner, rent);
             }
         }else if(currentBlock instanceof Action currAction){
             currAction.executeAction(currentPlayer);
+            mainGUI.updateInfo(currentPlayer);
         }
 
+        while (turnActive){
+            gameThread.sleep(1000);
+        };
 
-//        for(Player player : players) {
-//
-//        int[] dice = currentPlayer.rollTheDice();
-//        if (checkIfDoubles(dice))
-//            currentPlayer.numOfDoublesInARow++;
-//        if (checkIfThreeDoublesInARow(currentPlayer.numOfDoublesInARow))
-//            Jail.sendToJail(currentPlayer);
-//        int diceSum = dice[0] + dice[1];
-//        if (Jail.isInJail(currentPlayer))
-//            break;
-//        else {
-//            boolean isRelative = true;
-//            movePlayer(currentPlayer, diceSum, isRelative);
-//            if (currentPlayer.currentBlock instanceof Room) {
-//                if (currentPlayer.ownsProperty(currentPlayer.currentBlock)
-//                        && canBuildDesk((Room) currentPlayer.currentBlock, currentPlayer)) {
-//                    //ask player if he wants to build desk
-//                    //use buildDesk accordingly
-//                } else if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)) {
-//                    boolean ownerExists = false;
-//                    for (Player p : players) {
-//                        if (p.equals(currentPlayer))
-//                            continue;
-//                        else {
-//                            if (p.ownsProperty(currentPlayer.currentBlock)) {
-//                                if (currentPlayer.balance >= ((Room) currentPlayer.currentBlock).calculateRent()) {
-//                                    currentPlayer.balance -= ((Room) currentPlayer.currentBlock).calculateRent();
-//                                    checkBankruptcy(currentPlayer.getBalance());
-//                                    p.balance += ((Room) currentPlayer.currentBlock).calculateRent();
-//                                } else {
-//                                    players.remove(currentPlayer);
-//                                }
-//                                ownerExists = true;
-//                                break;
-//                            }
-//                        }
-//                    }
-//                    if (!ownerExists) {
-//                        //ask player if he wants to buy Room
-//
-//                    }
-//                }
-//            } else if (currentPlayer.currentBlock instanceof Service) {
-//                if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)) {
-//                    boolean ownerExists = false;
-//                    for (Player p : players) {
-//                        if (p.equals(currentPlayer))
-//                            continue;
-//                        else {
-//                            if (p.ownsProperty(currentPlayer.currentBlock)) {
-//                                if (currentPlayer.balance >= ((Service) currentPlayer.currentBlock).calculateRent(p, diceSum)) {
-//                                    currentPlayer.balance -= ((Service) currentPlayer.currentBlock).calculateRent(p, diceSum);
-//                                    p.balance += ((Room) currentPlayer.currentBlock).calculateRent();
-//                                } else {
-//                                    players.remove(currentPlayer);
-//                                }
-//                                ownerExists = true;
-//                                break;
-//                            }
-//                        }
-//                    }
-//                    if (!ownerExists) {
-//                        //ask player if he wants to buy Transport
-//                        //use buyProperty accordingly
-//                    }
-//                }
-//            } else if (currentPlayer.currentBlock instanceof Transport) {
-//                if (!currentPlayer.ownsProperty(currentPlayer.currentBlock)) {
-//                    boolean ownerExists = false;
-//                    for (Player p : players) {
-//                        if (p.equals(currentPlayer))
-//                            continue;
-//                        else {
-//                            if (p.ownsProperty(currentPlayer.currentBlock)) {
-//                                if (currentPlayer.balance >= ((Transport) currentPlayer.currentBlock).calculateRent(p)) {
-//                                    currentPlayer.balance -= ((Transport) currentPlayer.currentBlock).calculateRent(p);
-//                                    p.balance += ((Room) currentPlayer.currentBlock).calculateRent();
-//                                } else {
-//                                    players.remove(currentPlayer);
-//                                }
-//                                ownerExists = true;
-//                                break;
-//                            }
-//                        }
-//                    }
-//                    if (!ownerExists) {
-//                        //ask player if he wants to buy Transport
-//                        if (currentPlayer.balance >= ((Property) currentPlayer.currentBlock).cost) {
-//                            currentPlayer.BuyProperty((Property) currentPlayer.currentBlock);
-//                        }
-//                    }
-//                }
-//            } else if (currentPlayer.currentBlock instanceof Tax) {
-//                ((Tax) currentPlayer.currentBlock).payTax(currentPlayer);
-//            } else if (currentPlayer.currentBlock instanceof Action) {
-//
-//            }
-//        }
-//
-//        //needs break in case of currentPlayer bankruptcy
-//        }
         updateTurn();
         }
 
@@ -248,6 +152,10 @@ public class GameBoard implements Runnable {
             currentPlayer = players.get(currentPlayer.getPlayerID());
     }
 
+    public void setTurnActive(boolean val){
+        turnActive = val;
+    }
+
     public void createBlocks(){
         blockTable[0] = new Start(0, "ΑΦΕΤΗΡΙΑ");
         blockTable[1] = new Room(60,"ΑΙΘ. 1", null,1,2,10,30,90,160,250, "brown", 50);
@@ -259,7 +167,7 @@ public class GameBoard implements Runnable {
         blockTable[7] = new Action("chance", 7, "ΕΝΤΟΛΗ");
         blockTable[8] = new Room(100, "ΑΙΘ. 4", null, 6, 6,30,90,270,400,550,"light_blue",50);
         blockTable[9] = new Room(120, "ΑΙΘ. 5", null, 9, 8,40,100,300,450,600,"light_blue", 50);
-        blockTable[10] = new Jail(null, 10, "ΦΥΛΑΚΗ");
+        blockTable[10] = new Jail(10, "ΦΥΛΑΚΗ");
         blockTable[11] = new Room(140, "ΑΙΘ. 6",null, 11, 10,50,150,450,625,750,"magenta", 100);
         blockTable[12] = new Service(12, "ΚΥΛΙΚΕΙΟ", 150, null);
         blockTable[13] = new Room(140, "ΑΙΘ. 7",null, 11, 10,50,150,450,625,750,"magenta", 100);

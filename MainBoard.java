@@ -30,17 +30,20 @@ public class MainBoard extends JFrame {
 
     private Player currentPlayer;
 
+    private GameBoard gBoard;
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
 
     private enum ScreenState {
         NO_BTNS,
+        DEFAULT,
         UNOWNED_PROPERTY,
         JAILED
     }
 
-    private ScreenState currentState = ScreenState.NO_BTNS;
+    private ScreenState currentState = ScreenState.DEFAULT;
 
     public MainBoard(){
         updateScreenState();
@@ -66,6 +69,12 @@ public class MainBoard extends JFrame {
                 new BuyPropertyScreen(currentPlayer);
             }
         });
+        endTurnBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                gBoard.setTurnActive(false);
+            }
+        });
     }
 
     public void updateScreenState(){
@@ -85,20 +94,21 @@ public class MainBoard extends JFrame {
                 bottomButtons.setVisible(true);
                 break;
             default:
-                bottomButtons.setVisible(false);
+                bottomButtons.setVisible(true);
+                endTurnBtn.setVisible(true);
                 break;
         }
     }
 
-    public void updatePos(Block currBlock){
-        currentPos.setText(currBlock.blockPosition + 1 + " - " + currBlock.getBlockTitle());
+    public void updatePos(){
+        currentPos.setText(currentPlayer.currentBlock.blockPosition + 1 + " - " + currentPlayer.currentBlock.getBlockTitle());
     }
 
     public void updatePlayer(Player currPlayer){
         currentPlayer = currPlayer;
         playerNumber.setText(Integer.toString(currPlayer.getPlayerID()));
         updateBalance(currPlayer.getBalance());
-        updatePos(currPlayer.currentBlock);
+        updatePos();
     }
 
     public void updateBalance(int balance){
@@ -114,11 +124,12 @@ public class MainBoard extends JFrame {
                 updateScreenState();
             }
         }
+    }
 
-
+    public void setgBoard(GameBoard gBoard){
+        this.gBoard = gBoard;
     }
 
 
-    
 
 }
