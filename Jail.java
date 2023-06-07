@@ -22,5 +22,8 @@ public class Jail extends Block{
         GameBoard.movePlayer(player,30, false); //jail is on no. 30
     }
 
+    static void removeFromJail(Player player){
+        playersInJail.remove(player);
+    }
 
 }

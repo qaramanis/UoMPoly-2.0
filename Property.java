@@ -22,6 +22,10 @@ abstract class Property extends Block{
         p.properties.add(this);
     }
 
+    public int calculateRent(){
+        return 0;
+    }
+
     public boolean isMortgaged() {
         return isMortgaged;
     }

@@ -4,7 +4,7 @@ public class Service extends Property {
         super(position, title, cost, owner);
     }
   
-    public double calculateRent(Player player, int dice) {
+    public int calculateRent(Player player, int dice) {
         int numberOfServiceProperties = 0;
         double return_value;
         for (Property p : player.properties) {

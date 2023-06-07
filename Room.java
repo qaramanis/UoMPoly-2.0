@@ -29,8 +29,8 @@ public class Room extends Property {
         return this.color;
     }
 
-    public double calculateRent() {
-        double return_value = 0;
+    public int calculateRent() {
+        int return_value = 0;
         if (this.hasBoard) {
             return_value = this.rentWithBoard;
         } else {
