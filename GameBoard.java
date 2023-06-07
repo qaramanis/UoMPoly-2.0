@@ -21,6 +21,11 @@ public class GameBoard implements Runnable {
         }
 
         currentPlayer = players.get(0);
+        ((Property) blockTable[1]).setOwner(currentPlayer);
+        ((Property) blockTable[3]).setOwner(currentPlayer);
+        ((Property) blockTable[5]).setOwner(currentPlayer);
+        ((Property) blockTable[12]).setOwner(currentPlayer);
+        currentPlayer.currentBlock = blockTable[1];
     }
 
     public static Player getCurrentPlayer() {
@@ -184,7 +189,7 @@ public class GameBoard implements Runnable {
 
     public static boolean checkIfPlayerOwnsColorGroup(Room room, Player player) {
         for (Room r : sameColorRoom(room.getColor())) {
-            if (!r.getOwner().equals(player)) {
+            if (r.getOwner() == null || !r.getOwner().equals(player)) {
                 return false;
             }
         }
@@ -192,30 +197,16 @@ public class GameBoard implements Runnable {
         return true;
     }
 
-    static ArrayList<Room> sameColorRoom(String color) {
+    public static ArrayList<Room> sameColorRoom(String color) {
         ArrayList<Room> rooms = new ArrayList<>();
-        //need connection to database to scan and get all the same-color rooms
+        for(Block b : blockTable){
+            if(b instanceof Room r){
+                if(r.getColor().equals(color)) rooms.add(r);
+            }
+        }
 
         return rooms;
     }
-
-    public int getRandomWithExclusion(Random rnd, int start, int end, int... exclude) {
-        int random = start + rnd.nextInt(16 - exclude.length);
-        for (int ex : exclude) {
-            if (random < ex) {
-                break;
-            }
-            random++;
-        }
-        return random;
-    }
-
-    public int[] addElement(int[] a, int e) {
-        a = Arrays.copyOf(a, a.length + 1);
-        a[a.length - 1] = e;
-        return a;
-    }
-
 
     public boolean checkBankruptcy(int balance) {
         boolean result = balance < 0;

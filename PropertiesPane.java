@@ -28,6 +28,7 @@ public class PropertiesPane extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(600, 900);
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
         backBtn.addActionListener(new ActionListener() {
             @Override
