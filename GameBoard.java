@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.lang.reflect.Array;
 import java.util.*;
 public class GameBoard implements Runnable {
@@ -46,7 +47,32 @@ public class GameBoard implements Runnable {
 
     public void gameLoop(){
 
-//        mainGUI.updateInfo(currentPlayer);
+        mainGUI.updateInfo(currentPlayer);
+        int[] excludeChance;
+        int[] excludeDecision;
+        int dice[] = currentPlayer.rollTheDice();
+        int diceSum = dice[0] + dice[1];
+        if(Jail.isInJail(currentPlayer)){
+            if(dice[0] != dice[1]) {
+                JOptionPane.showMessageDialog(null, "Παραμένεις στην φυλακή 😎😎", "Φυλακή", JOptionPane.INFORMATION_MESSAGE);
+//                updateTurn();
+            }else
+                Jail.removeFromJail(currentPlayer);
+        }else{
+            movePlayer(currentPlayer, diceSum, true);
+        }
+
+        Block currentBlock = currentPlayer.currentBlock;
+        if (currentBlock instanceof Property){
+            if (!((Property) currentBlock).owner.equals(currentPlayer) && ((Property) currentBlock).owner != null){
+                int rent = ((Property) currentBlock).calculateRent();
+                currentPlayer.payRent(((Property) currentBlock).owner, rent);
+            }
+        }else if(currentBlock instanceof Action currAction){
+            currAction.executeAction(currentPlayer);
+        }
+
+
 //        for(Player player : players) {
 //
 //        int[] dice = currentPlayer.rollTheDice();
@@ -148,8 +174,8 @@ public class GameBoard implements Runnable {
 //
 //        //needs break in case of currentPlayer bankruptcy
 //        }
-//        updateTurn();
-    }
+        updateTurn();
+        }
 
     static boolean checkIfDoubles(int[] dice) {
         boolean result;
@@ -194,27 +220,10 @@ public class GameBoard implements Runnable {
 
     static ArrayList<Room> sameColorRoom(String color) {
         ArrayList<Room> rooms = new ArrayList<>();
-        //need connection to database to scan and get all the same-color rooms
-
         return rooms;
     }
 
-    public int getRandomWithExclusion(Random rnd, int start, int end, int... exclude) {
-        int random = start + rnd.nextInt(16 - exclude.length);
-        for (int ex : exclude) {
-            if (random < ex) {
-                break;
-            }
-            random++;
-        }
-        return random;
-    }
 
-    public int[] addElement(int[] a, int e) {
-        a = Arrays.copyOf(a, a.length + 1);
-        a[a.length - 1] = e;
-        return a;
-    }
 
 
     public boolean checkBankruptcy(int balance) {
@@ -231,7 +240,7 @@ public class GameBoard implements Runnable {
     }
 
     public void createBlocks(){
-        blockTable[0] = new Start(0, "Αφετηρία");
+        blockTable[0] = new Start(0, "ΑΦΕΤΗΡΙΑ");
         blockTable[1] = new Room(60,"ΑΙΘ. 1", null,1,2,10,30,90,160,250, "brown", 50);
         blockTable[2] = new Action("chance", 2,"ΑΠΟΦΑΣΗ");
         blockTable[3] = new Room(60,"AΙΘ. 2",null, 3, 4,20,60,180,320,450, "brown", 50);
