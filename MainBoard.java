@@ -82,6 +82,15 @@ public class MainBoard extends JFrame {
                 gBoard.setTurnActive(false);
             }
         });
+        jailCardBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(currentPlayer.outOfJailCards > 0){
+                    currentPlayer.outOfJailCards--;
+                    Jail.removeFromJail(currentPlayer);
+                }
+            }
+        });
     }
 
     public void handleScreenState(){
@@ -100,6 +109,13 @@ public class MainBoard extends JFrame {
                 endTurnBtn.setVisible(true);
                 bottomButtons.setVisible(true);
                 break;
+            case JAILED:
+                jailPayBtn.setVisible(true);
+                jailCardBtn.setVisible(true);
+                jailCardBtn.setEnabled(false);
+                jailDiceBtn.setVisible(true);
+                bottomButtons.setVisible(true);
+                if(currentPlayer.outOfJailCards > 0) jailCardBtn.setEnabled(true);
             default:
                 bottomButtons.setVisible(true);
                 endTurnBtn.setVisible(true);
@@ -109,6 +125,7 @@ public class MainBoard extends JFrame {
 
     public void updatePos(){
         currentPos.setText(currentPlayer.currentBlock.blockPosition + 1 + " - " + currentPlayer.currentBlock.getBlockTitle());
+
         updateScreenState();
         updateBoardImage();
 
@@ -152,6 +169,10 @@ public class MainBoard extends JFrame {
                 currentState = ScreenState.DEFAULT;
                 handleScreenState();
             }
+        }
+        if(Jail.isInJail(currentPlayer)) {
+            currentState = ScreenState.JAILED;
+            handleScreenState();
         }
     }
 

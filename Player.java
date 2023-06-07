@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 import java.awt.*;
 import java.util.*;
 
@@ -82,6 +83,7 @@ public class Player {
     public void payRent(Player owner, int rent){
         this.balance -= rent;
         owner.balance += rent;
+        JOptionPane.showMessageDialog(null, "Πλήρωσες ενοίκιο " + rent  + "€ στον Παίκτη " + owner.getPlayerID() + ".\n", "Πλήρωσες Ενοίκιο", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

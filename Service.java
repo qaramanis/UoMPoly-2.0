@@ -4,10 +4,10 @@ public class Service extends Property {
         super(position, title, cost, owner);
     }
   
-    public int calculateRent(Player player, int dice) {
+    public int calculateRent(int[] dice) {
         int numberOfServiceProperties = 0;
-        double return_value;
-        for (Property p : player.properties) {
+        int diceTotal = dice[0] + dice[1];
+        for (Property p : this.owner.properties) {
             if (p instanceof Service)
                 numberOfServiceProperties++;
         }
@@ -16,8 +16,8 @@ public class Service extends Property {
         int multiplierForTwoProperties = 10;
 
         if (numberOfServiceProperties == 1)
-            return dice * multiplierForOneProperty;
+            return diceTotal * multiplierForOneProperty;
         else
-            return dice * multiplierForTwoProperties;
+            return diceTotal * multiplierForTwoProperties;
     }
 }

@@ -31,7 +31,10 @@ public class Action extends Block {
             excludedDecision.add(random);
             generateAction(random, player, mBoard);
         }else if (this.type.equals("go_to_jail")){
+            JOptionPane.showMessageDialog(null, "Πήγαινε κατευθείαν στη φυλακή.\n" +
+                    "Δεν περνάς από την αφετηρία δεν παίρνεις 200$.", "Επιλογή", JOptionPane.INFORMATION_MESSAGE);
             Jail.sendToJail(player);
+            mBoard.updatePos();
         }
     }
 
@@ -57,7 +60,7 @@ public class Action extends Block {
                     break;
                 case 3:
                     JOptionPane.showMessageDialog(null, "Προχώρησε στη θέση24.\n" +
-                            "Αν περάσειςαπό την αφετηρία πάρε 200$.", "Επιλογή", JOptionPane.INFORMATION_MESSAGE);
+                            "Αν περάσεις από την αφετηρία πάρε 200$.", "Επιλογή", JOptionPane.INFORMATION_MESSAGE);
                     if (currentPosition > 24)
                         player.receiveStartPayment();
                     GameBoard.movePlayer(player, 24, false);
@@ -71,12 +74,14 @@ public class Action extends Block {
                         GameBoard.movePlayer(player, 28, false);
                     else
                         GameBoard.movePlayer(player,12,false);
-                    if (((Service) player.currentBlock).getOwner() != player) {
-                        int[] dice = player.rollTheDice();
-                        ((Service) player.currentBlock).getOwner().balance += 2 * (dice[0] + dice[1]);
-                    } else {
-                        //ask player if he wants to purchase
+                    mBoard.updatePos();
+                    if (((Service) player.currentBlock).getOwner() == null) {
                         new BuyPropertyScreen(player, mBoard);
+
+                    } else {
+                        int[] dice = player.rollTheDice();
+                        int rent = ((Service) player.currentBlock).calculateRent(dice);
+                        player.payRent(((Service) player.currentBlock).owner, rent);
                     }
                     break;
                 case 5:
@@ -113,10 +118,7 @@ public class Action extends Block {
                     break;
                 case 9:
                     JOptionPane.showMessageDialog(null, "Βγες από την φυλακή ή κράτα αυτή τη κάρτα μέχρι να σου χρειαστεί.", "Επιλογή", JOptionPane.INFORMATION_MESSAGE);
-                    if (Jail.isInJail(player))
-                        player.exitPrisonWithCard();
-                    else
-                        player.outOfJailCards++;
+                    player.outOfJailCards++;
                     break;
                 case 10:
                     JOptionPane.showMessageDialog(null, "Πήγαινε στην ΑΙΘ, 6. Αν περάσειςαπό την αφετηρία πάρε 200$.", "Επιλογή", JOptionPane.INFORMATION_MESSAGE);
@@ -169,11 +171,7 @@ public class Action extends Block {
             switch (number) {
                 case 0 :
                     JOptionPane.showMessageDialog(null, "Βγες από την φυλακή ή κράτα αυτή τη κάρτα μέχρι να σου χρειαστεί.", "Απόφαση", JOptionPane.INFORMATION_MESSAGE);
-
-                    if (Jail.isInJail(player))
-                        player.exitPrisonWithCard();
-                    else
-                        player.outOfJailCards++;
+                    player.outOfJailCards++;
                 case 1:
                     JOptionPane.showMessageDialog(null, "Έξοδα καθαριότητας. Πλήρωσε 50$.", "Απόφαση", JOptionPane.INFORMATION_MESSAGE);
                     player.balance -= 50;
