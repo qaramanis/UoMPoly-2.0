@@ -37,8 +37,6 @@ public class MainBoard extends JFrame {
     private enum ScreenState {
         NO_BTNS,
         UNOWNED_PROPERTY,
-        OWNED_PROPERTY,
-        ACTION,
         JAILED
     }
 
@@ -93,7 +91,7 @@ public class MainBoard extends JFrame {
     }
 
     public void updatePos(Block currBlock){
-        currentPos.setText(currBlock.blockPosition + " - " + currBlock.getBlockTitle());
+        currentPos.setText(currBlock.blockPosition + 1 + " - " + currBlock.getBlockTitle());
     }
 
     public void updatePlayer(Player currPlayer){
@@ -121,7 +119,6 @@ public class MainBoard extends JFrame {
     }
 
 
-
-
+    
 
 }

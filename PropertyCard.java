@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,11 +16,12 @@ public class PropertyCard extends JPanel {
     private JButton sellDeskBtn;
     private JPanel desksWrapper;
     private JPanel boardsWrapper;
-    private JLabel numberOfBoardsLabel;
     private JButton buyBoardBtn;
     private JButton sellBoardBtn;
     private JLabel mortgageValueLabel;
     private JButton mortgageBtn;
+    private JLabel hasBoardLabel;
+    private JPanel serviceDisclaimers;
 
     private Property prop;
     MainBoard mBoard;
@@ -30,8 +32,7 @@ public class PropertyCard extends JPanel {
         this.mBoard = mBoard;
         propAttributes = new DefaultListModel<String>();
 
-        if(prop instanceof Room){
-            Room r = (Room)prop;
+        if(prop instanceof Room r){
             propAttributes.addElement("Τιμή: " + r.cost);
             propAttributes.addElement("Ενοίκιο: " + r.getRent());
             propAttributes.addElement("Ενοίκιο με 1 έδρανο: " + r.getRentWithOneDesk());
@@ -40,13 +41,23 @@ public class PropertyCard extends JPanel {
             propAttributes.addElement("Ενοίκιο με 4 έδρανα: " + r.getRentWithFourDesks());
             propAttributes.addElement("Ενοίκιο με πίνακα: " + r.getRentWithBoard());
             numberOfDesksLabel.setText(Integer.toString(r.numberOfDesks));
+            serviceDisclaimers.setVisible(false);
         }
-        if(prop instanceof Transport){
-            propAttributes.addElement("Τιμή: " + prop.cost);
-            propAttributes.addElement("Ενοίκιο: " + ((Transport) prop).rentWithOneTransportProperty);
-            propAttributes.addElement("Ενοίκιο αν κατέχεις 2 ανελκυστήρες: " + ((Transport) prop).rentWithTwoTransportProperties);
-            propAttributes.addElement("Ενοίκιο αν κατέχεις 3 ανελκυστήρες: " + ((Transport) prop).rentWithThreeTransportProperties);
-            propAttributes.addElement("Ενοίκιο αν κατέχεις 4 ανελκυστήρες: " + ((Transport) prop).rentWithFourTransportProperties);
+        if(prop instanceof Transport transp){
+            propAttributes.addElement("Τιμή: " + transp.cost);
+            propAttributes.addElement("Ενοίκιο: " + transp.rentWithOneTransportProperty);
+            propAttributes.addElement("Ενοίκιο αν κατέχεις 2 ανελκυστήρες: " + transp.rentWithTwoTransportProperties);
+            propAttributes.addElement("Ενοίκιο αν κατέχεις 3 ανελκυστήρες: " + transp.rentWithThreeTransportProperties);
+            propAttributes.addElement("Ενοίκιο αν κατέχεις 4 ανελκυστήρες: " + transp.rentWithFourTransportProperties);
+            wholeCGroupDisclaimer.setVisible(false);
+            serviceDisclaimers.setVisible(false);
+            desksWrapper.setVisible(false);
+            boardsWrapper.setVisible(false);
+        }
+        if(prop instanceof Service serv){
+            propAttributes.addElement("Τιμή: " + serv.cost);
+            list1.setVisible(false);
+            wholeCGroupDisclaimer.setVisible(false);
             desksWrapper.setVisible(false);
             boardsWrapper.setVisible(false);
         }
@@ -54,9 +65,12 @@ public class PropertyCard extends JPanel {
         list1.setModel(propAttributes);
 
         updateMortgageInfo();
+        updateHasBoard();
         propertyNameLabel.setText(prop.getBlockTitle());
+        mortgageValueLabel.setText(prop.mortgageValue + "");
 
         add(panel1);
+        panel1.setAlignmentX(Component.LEFT_ALIGNMENT);
         setSize(600, 300);
         setVisible(true);
         mortgageBtn.addActionListener(new ActionListener() {
@@ -76,6 +90,31 @@ public class PropertyCard extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 ((Room)prop).buildDesk();
                 updateNumberOfDesks();
+                mBoard.updatePlayer(prop.owner);
+            }
+        });
+        sellDeskBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((Room)prop).sellDesk();
+                updateNumberOfDesks();
+                mBoard.updatePlayer(prop.owner);
+            }
+        });
+        buyBoardBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ((Room)prop).buildBoard();
+                updateHasBoard();
+                mBoard.updatePlayer(prop.owner);
+            }
+        });
+        sellBoardBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ((Room)prop).sellBoard();
+                updateHasBoard();
+                mBoard.updatePlayer(prop.owner);
             }
         });
     }
@@ -89,7 +128,14 @@ public class PropertyCard extends JPanel {
     }
 
     private void updateNumberOfDesks(){
-        numberOfDesksLabel.setText(((Room)prop).numberOfDesks + "");
+      if(prop instanceof  Room r) numberOfDesksLabel.setText(r.numberOfDesks + "");
+    }
+    private void updateHasBoard(){
+        if(prop instanceof  Room r) {
+            String hasBoardText = "Όχι";
+            if (r.hasBoard) hasBoardText = "Ναι";
+            hasBoardLabel.setText(hasBoardText);
+        }
     }
 
     private void createUIComponents() {

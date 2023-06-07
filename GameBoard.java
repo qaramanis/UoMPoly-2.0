@@ -22,6 +22,11 @@ public class GameBoard implements Runnable {
         }
 
         currentPlayer = players.get(0);
+        ((Property) blockTable[1]).setOwner(currentPlayer);
+        ((Property) blockTable[3]).setOwner(currentPlayer);
+        ((Property) blockTable[5]).setOwner(currentPlayer);
+        ((Property) blockTable[12]).setOwner(currentPlayer);
+        currentPlayer.currentBlock = blockTable[1];
     }
 
     public static Player getCurrentPlayer() {
@@ -210,7 +215,7 @@ public class GameBoard implements Runnable {
 
     public static boolean checkIfPlayerOwnsColorGroup(Room room, Player player) {
         for (Room r : sameColorRoom(room.getColor())) {
-            if (!r.getOwner().equals(player)) {
+            if (r.getOwner() == null || !r.getOwner().equals(player)) {
                 return false;
             }
         }
@@ -218,12 +223,16 @@ public class GameBoard implements Runnable {
         return true;
     }
 
-    static ArrayList<Room> sameColorRoom(String color) {
+    public static ArrayList<Room> sameColorRoom(String color) {
         ArrayList<Room> rooms = new ArrayList<>();
+        for(Block b : blockTable){
+            if(b instanceof Room r){
+                if(r.getColor().equals(color)) rooms.add(r);
+            }
+        }
+
         return rooms;
     }
-
-
 
 
     public boolean checkBankruptcy(int balance) {

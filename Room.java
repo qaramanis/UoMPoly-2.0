@@ -70,23 +70,24 @@ public class Room extends Property {
     }
 
     public void sellDesk() {
-        if (this.numberOfDesks > 0) {
+        if (this.numberOfDesks > 0 && !this.hasBoard) {
             this.numberOfDesks--;
             this.owner.balance += (structureCost / 2);
-        }
+        }else JOptionPane.showMessageDialog(null, "Δεν μπορείς να πουλήσεις έδρανο.", "Ωχ! Κάτι πήγε στραβά.", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void buildBoard() {
-        if (!this.hasBoard)
-            this.hasBoard = true;
+        if (canBuildBoard()){
+            this.owner.balance -= structureCost;
+            hasBoard = true;
+        }else JOptionPane.showMessageDialog(null, "Δεν μπορείς να χτίσεις πίνακα.", "Ωχ! Κάτι πήγε στραβά.", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void sellBoard(Player owner) {
+    public void sellBoard() {
         if (this.hasBoard) {
             this.hasBoard = false;
-
-            owner.balance = +structureCost;
-        }
+            this.owner.balance += (structureCost/2);
+        }else JOptionPane.showMessageDialog(null, "Δεν μπορείς να πουλήσεις πίνακα.", "Ωχ! Κάτι πήγε στραβά.", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
