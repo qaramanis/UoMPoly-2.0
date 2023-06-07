@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Jail extends Block{
     static ArrayList<Player> playersInJail = new ArrayList<>();
 
-    public Jail (ArrayList<Player> playersInJail, int position, String title){
+    public Jail (int position, String title){
         super(position, title);
-        this.playersInJail = playersInJail;
+
     }
 
     static boolean isInJail(Player player){
