@@ -76,6 +76,12 @@ public class MainBoard extends JFrame {
                 gBoard.setTurnActive(false);
             }
         });
+        endTurnBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                gBoard.setTurnActive(false);
+            }
+        });
     }
 
     public void handleScreenState(){
@@ -105,6 +111,7 @@ public class MainBoard extends JFrame {
         currentPos.setText(currentPlayer.currentBlock.blockPosition + 1 + " - " + currentPlayer.currentBlock.getBlockTitle());
         updateScreenState();
         updateBoardImage();
+
     }
 
     public void updatePlayer(Player currPlayer){
@@ -147,7 +154,6 @@ public class MainBoard extends JFrame {
             }
         }
     }
-
 
     public void setgBoard(GameBoard gBoard){
         this.gBoard = gBoard;

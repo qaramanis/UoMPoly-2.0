@@ -70,7 +70,9 @@ public class GameBoard implements Runnable {
         }
 
         Block currentBlock = currentPlayer.currentBlock;
+      
         if(currentBlock instanceof Start start) start.receiveStartPayment(currentPlayer);
+
         if (currentBlock instanceof Property prop){
             if (prop.owner != null && !prop.owner.equals(currentPlayer)){
                 int rent = prop.calculateRent();
@@ -80,6 +82,7 @@ public class GameBoard implements Runnable {
         }
         if(currentBlock instanceof Action currAction){
             currAction.executeAction(currentPlayer, mainGUI);
+
             mainGUI.updateInfo(currentPlayer);
         }
 

@@ -41,6 +41,7 @@ public class Player {
         int[] dice = new int[2];
         dice[0] = new Random().nextInt(6) + 1;
         dice[1] = new Random().nextInt(6) + 1;
+
         return dice;
     }
 
