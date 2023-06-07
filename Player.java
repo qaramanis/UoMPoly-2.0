@@ -74,4 +74,9 @@ public class Player {
         return result;
     }
 
+    public void payRent(Player owner, int rent){
+        this.balance -= rent;
+        owner.balance += rent;
+    }
+
 }
