@@ -112,7 +112,7 @@
           <color color="-1759972"/>
         </border>
         <children>
-          <component id="a24b5" class="javax.swing.JLabel">
+          <component id="a24b5" class="javax.swing.JLabel" binding="boardLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>

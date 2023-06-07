@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BuyPropertyScreen extends JFrame {
     private JPanel panel1;
@@ -8,10 +10,13 @@ public class BuyPropertyScreen extends JFrame {
     private JList list1;
     private JLabel propertyNameLabel;
     private JButton buyBtn;
+    private JPanel serviceDisclaimers;
     private DefaultListModel<String> propAttributes;
-    public BuyPropertyScreen(Player pl){
+    private MainBoard mBoard;
+    public BuyPropertyScreen(Player pl, MainBoard mBoard){
         Property prop = (Property)pl.currentBlock;
         propAttributes = new DefaultListModel<String>();
+        serviceDisclaimers.setVisible(false);
 
         if(prop instanceof Room){
             propAttributes.addElement("Τιμή: " + prop.cost);
@@ -29,6 +34,11 @@ public class BuyPropertyScreen extends JFrame {
             propAttributes.addElement("Ενοίκιο αν κατέχεις 3 ανελκυστήρες: " + ((Transport) prop).rentWithThreeTransportProperties);
             propAttributes.addElement("Ενοίκιο αν κατέχεις 4 ανελκυστήρες: " + ((Transport) prop).rentWithFourTransportProperties);
         }
+        if(prop instanceof Service serv){
+            propAttributes.addElement("Τιμή: " + serv.cost);
+            list1.setVisible(false);
+            serviceDisclaimers.setVisible(true);
+        }
 
         list1.setModel(propAttributes);
 
@@ -40,5 +50,19 @@ public class BuyPropertyScreen extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+        cancelBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                dispose();
+            }
+        });
+        buyBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                pl.BuyProperty();
+                mBoard.updateInfo(pl);
+                dispose();
+            }
+        });
     }
 }

@@ -16,27 +16,27 @@ public class Action extends Block {
         return type;
     }
 
-    public void executeAction(Player player) {
+    public void executeAction(Player player, MainBoard mBoard) {
         Random rnd = new Random();
         if (type.equals("chance")) {
             if (excludedChance.size() == 16)
                 excludedChance.clear();
             int random = getRandomWithExclusion(rnd, excludedChance);
             excludedChance.add(random);
-            generateAction(random, player);
+            generateAction(random, player, mBoard);
         }else if (type.equals("decision")){
             if (excludedDecision.size() == 16)
                 excludedDecision.clear();
             int random = getRandomWithExclusion(rnd, excludedDecision);
             excludedDecision.add(random);
-            generateAction(random, player);
+            generateAction(random, player, mBoard);
         }else if (this.type.equals("go_to_jail")){
             Jail.sendToJail(player);
         }
     }
 
 
-    public void generateAction(int number, Player player) {
+    public void generateAction(int number, Player player, MainBoard mBoard) {
         int currentPosition = player.currentBlock.blockPosition;
         if (this.type.equals("chance")) {
             switch (number) {
@@ -76,13 +76,14 @@ public class Action extends Block {
                         ((Service) player.currentBlock).getOwner().balance += 2 * (dice[0] + dice[1]);
                     } else {
                         //ask player if he wants to purchase
-                        player.BuyProperty((Service) player.currentBlock);
+                        new BuyPropertyScreen(player, mBoard);
                     }
                     break;
                 case 5:
                     JOptionPane.showMessageDialog(null, "Πήγαινε κατευθείαν στη φυλακή.\n" +
                             "Δεν περνάς από την αφετηρία δεν παίρνεις 200$.", "Επιλογή", JOptionPane.INFORMATION_MESSAGE);
                     Jail.sendToJail(player);
+                    mBoard.updatePos();
                     break;
                 case 6:
                     JOptionPane.showMessageDialog(null, "Προχώρησε στην αφετηρία. Πάρε 200$.", "Επιλογή", JOptionPane.INFORMATION_MESSAGE);

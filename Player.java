@@ -39,14 +39,19 @@ public class Player {
 
     public int[] rollTheDice() {
         int[] dice = new int[2];
-        dice[0] = (int)Math.floor(Math.random() * 7);
-        dice[1] = (int)Math.floor(Math.random() * 7);
+        dice[0] = new Random().nextInt(6) + 1;
+        dice[1] = new Random().nextInt(6) + 1;
+
         return dice;
     }
 
-    public void BuyProperty(Property property) {
-        this.properties.add(property);
-        this.balance -= property.cost;
+    public void BuyProperty() {
+
+        if(currentBlock instanceof Property prop){
+            prop.setOwner(this);
+            this.balance -= prop.cost;
+        }
+
     }
 
     public void MortgageProperty(Property property) {

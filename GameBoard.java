@@ -56,10 +56,11 @@ public class GameBoard implements Runnable {
         setTurnActive(true);
 
         int dice[] = currentPlayer.rollTheDice();
+        mainGUI.updateDice(dice);
         int diceSum = dice[0] + dice[1];
         if(Jail.isInJail(currentPlayer)){
             if(dice[0] != dice[1]) {
-                JOptionPane.showMessageDialog(null, "Παραμένεις στην φυλακή 😎😎", "Φυλακή", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Παραμένεις στην φυλακή", "Φυλακή", JOptionPane.INFORMATION_MESSAGE);
 //                updateTurn();
             }else
                 Jail.removeFromJail(currentPlayer);
@@ -69,13 +70,19 @@ public class GameBoard implements Runnable {
         }
 
         Block currentBlock = currentPlayer.currentBlock;
+      
+        if(currentBlock instanceof Start start) start.receiveStartPayment(currentPlayer);
+
         if (currentBlock instanceof Property prop){
             if (prop.owner != null && !prop.owner.equals(currentPlayer)){
                 int rent = prop.calculateRent();
                 currentPlayer.payRent(prop.owner, rent);
+                JOptionPane.showMessageDialog(null, "Πλήρωσες ενοίκιο " + rent  + "€ στον Παίκτη " + prop.owner.getPlayerID() + ".\n", "Πλήρωσες Ενοίκιο", JOptionPane.INFORMATION_MESSAGE);
             }
-        }else if(currentBlock instanceof Action currAction){
-            currAction.executeAction(currentPlayer);
+        }
+        if(currentBlock instanceof Action currAction){
+            currAction.executeAction(currentPlayer, mainGUI);
+
             mainGUI.updateInfo(currentPlayer);
         }
 
