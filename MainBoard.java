@@ -27,6 +27,7 @@ public class MainBoard extends JFrame {
     private JButton jailPayBtn;
     private JButton buyPropBtn;
     private JButton endTurnBtn;
+    private JLabel boardLabel;
 
     private Player currentPlayer;
 
@@ -46,7 +47,7 @@ public class MainBoard extends JFrame {
     private ScreenState currentState = ScreenState.DEFAULT;
 
     public MainBoard(){
-        updateScreenState();
+        handleScreenState();
 
         setContentPane(container);
         setTitle("UoMPoly");
@@ -66,7 +67,7 @@ public class MainBoard extends JFrame {
         buyPropBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new BuyPropertyScreen(currentPlayer);
+                new BuyPropertyScreen(currentPlayer, mBoard);
             }
         });
         endTurnBtn.addActionListener(new ActionListener() {
@@ -77,7 +78,7 @@ public class MainBoard extends JFrame {
         });
     }
 
-    public void updateScreenState(){
+    public void handleScreenState(){
         buyPropBtn.setVisible(false);
         endTurnBtn.setVisible(false);
         jailPayBtn.setVisible(false);
@@ -102,6 +103,8 @@ public class MainBoard extends JFrame {
 
     public void updatePos(){
         currentPos.setText(currentPlayer.currentBlock.blockPosition + 1 + " - " + currentPlayer.currentBlock.getBlockTitle());
+        updateScreenState();
+        updateBoardImage();
     }
 
     public void updatePlayer(Player currPlayer){
@@ -117,14 +120,34 @@ public class MainBoard extends JFrame {
 
     public void updateInfo(Player currPlayer){
         updatePlayer(currPlayer);
+        updateScreenState();
+    }
+
+    public void updateDice(int[] dice){
+        diceNumbers.setText(dice[0] + " - " + dice[1]);
+    }
+
+    public void updateBoardImage(){
+        int currentPos = currentPlayer.currentBlock.blockPosition;
+        if(0 <= currentPos && currentPos <= 10) boardLabel.setIcon(new ImageIcon("./resources/0-10Board.png"));
+        if(11 <= currentPos && currentPos <= 20) boardLabel.setIcon(new ImageIcon("./resources/11-20Board.png"));
+        if(21 <= currentPos && currentPos <= 30) boardLabel.setIcon(new ImageIcon("./resources/21-30Board.png"));
+        if(31 <= currentPos && currentPos <= 39) boardLabel.setIcon(new ImageIcon("./resources/31-39Board.png"));
+    }
+
+    public void updateScreenState(){
         Block currBlock = currentPlayer.currentBlock;
-        if(currBlock instanceof Property){
-            if(((Property)currBlock).getOwner() == null){
+        if(currBlock instanceof Property prop){
+            if(prop.getOwner() == null){
                 currentState = ScreenState.UNOWNED_PROPERTY;
-                updateScreenState();
+                handleScreenState();
+            }else{
+                currentState = ScreenState.DEFAULT;
+                handleScreenState();
             }
         }
     }
+
 
     public void setgBoard(GameBoard gBoard){
         this.gBoard = gBoard;
