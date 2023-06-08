@@ -8,14 +8,12 @@ public class Transport extends Property {
     public Transport(int position, String title, int cost, Player owner){
         super(position, title, cost, owner);
     }
-    public int calculateRent(Player player) {
+    public int calculateRent() {
         int numberOfTransportProperties = 0;
-        for (Property p : player.properties) {
+        for (Property p : owner.getProperties()) {
             if (p instanceof Transport)
                 numberOfTransportProperties++;
         }
-
-
 
         switch (numberOfTransportProperties) {
             case 1:

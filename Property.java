@@ -1,6 +1,8 @@
+import javax.swing.JOptionPane;
+
 abstract class Property extends Block{
-    public int cost;
-    public int mortgageValue;
+    private int cost;
+    private int mortgageValue;
     protected Player owner;
     protected boolean isMortgaged = false;
 
@@ -19,7 +21,7 @@ abstract class Property extends Block{
 
     public void setOwner(Player p){
         this.owner = p;
-        p.properties.add(this);
+        p.addProperty(this);
     }
 
     public int calculateRent(){
@@ -31,9 +33,29 @@ abstract class Property extends Block{
     }
 
     public void mortgageProperty(){
-
+        if(!this.isMortgaged){
+            this.isMortgaged = true;
+            this.owner.increaseBalance(getMortgageValue());
+        }
     }
 
     public void unmortgageProperty(){
+        int unmortgageCost = (int)(getMortgageValue() + (getMortgageValue() * 0.1));
+        if(this.isMortgaged){
+            if(this.owner.getBalance() >= unmortgageCost) {
+                this.isMortgaged = false;
+                this.owner.decreaseBalance(unmortgageCost);
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Τα λεφτά σου δεν επαρκούν για να κάνεις άρση της υποθήκεθσης!", "Υποθήκη", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public int getMortgageValue() {
+        return mortgageValue;
     }
 }

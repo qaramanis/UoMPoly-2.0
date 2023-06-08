@@ -9,9 +9,9 @@ public class Room extends Property {
     private int rentWithBoard;
     private String color;
 
-    public int numberOfDesks = 0;
+    private int numberOfDesks = 0;
     private int structureCost;
-    public boolean hasBoard;
+    private boolean hasBoard;
     public Room(int cost, String title,  Player owner, int position, int rent, int rentWithOneDesk, int rentWithTwoDesks, int rentWithThreeDesks, int rentWithFourDesks, int rentWithBoard, String color, int structureCost){
       
         super(position, title, cost, owner);
@@ -55,16 +55,20 @@ public class Room extends Property {
     }
 
     public boolean canBuildDesk() {
-        return GameBoard.checkIfPlayerOwnsColorGroup(this, this.owner) && this.numberOfDesks < 4 && this.owner.balance >= structureCost && this.owner.currentBlock.equals(this);
+        return GameBoard.checkIfPlayerOwnsColorGroup(this, this.owner) && this.numberOfDesks < 4 && this.owner.getBalance() >= structureCost && this.owner.getCurrentBlock().equals(this);
     }
 
     public boolean canBuildBoard() {
-        return this.numberOfDesks == 4 && this.owner.balance >= structureCost && this.owner.currentBlock.equals(this);
+        boolean statementPart = this.owner.getBalance() >= structureCost && this.owner.getCurrentBlock().equals(this);
+        for(Room r : GameBoard.sameColorRoom(this.color)){
+            if(r.numberOfDesks < 4) return false;
+        }
+        return statementPart;
     }
 
     public void buildDesk() {
         if (canBuildDesk()){
-            this.owner.balance -= structureCost;
+            this.owner.decreaseBalance(structureCost);
             numberOfDesks++;
         }else JOptionPane.showMessageDialog(null, "Δεν μπορείς να χτίσεις έδρανο.", "Ωχ! Κάτι πήγε στραβά.", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -72,13 +76,13 @@ public class Room extends Property {
     public void sellDesk() {
         if (this.numberOfDesks > 0 && !this.hasBoard) {
             this.numberOfDesks--;
-            this.owner.balance += (structureCost / 2);
+            this.owner.increaseBalance(structureCost/2);
         }else JOptionPane.showMessageDialog(null, "Δεν μπορείς να πουλήσεις έδρανο.", "Ωχ! Κάτι πήγε στραβά.", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void buildBoard() {
         if (canBuildBoard()){
-            this.owner.balance -= structureCost;
+            this.owner.decreaseBalance(structureCost);
             hasBoard = true;
         }else JOptionPane.showMessageDialog(null, "Δεν μπορείς να χτίσεις πίνακα.", "Ωχ! Κάτι πήγε στραβά.", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -86,7 +90,7 @@ public class Room extends Property {
     public void sellBoard() {
         if (this.hasBoard) {
             this.hasBoard = false;
-            this.owner.balance += (structureCost/2);
+            this.owner.increaseBalance(structureCost/2);
         }else JOptionPane.showMessageDialog(null, "Δεν μπορείς να πουλήσεις πίνακα.", "Ωχ! Κάτι πήγε στραβά.", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -94,16 +98,16 @@ public class Room extends Property {
     public void mortgageProperty(){
         if(numberOfDesks == 0 && !hasBoard && !this.isMortgaged){
             this.isMortgaged = true;
-            this.owner.balance += mortgageValue;
+            this.owner.increaseBalance(getMortgageValue());
         }
     }
 
     @Override
     public void unmortgageProperty(){
-        int unmortgageCost = (int)(mortgageValue + (mortgageValue * 0.1));
-        if(this.isMortgaged && this.owner.balance >= unmortgageCost){
+        int unmortgageCost = (int)(getMortgageValue() + (getMortgageValue() * 0.1));
+        if(this.isMortgaged && this.owner.getBalance() >= unmortgageCost){
             this.isMortgaged = false;
-            this.owner.balance -= unmortgageCost;
+            this.owner.decreaseBalance(unmortgageCost);
         }
     }
 
@@ -135,16 +139,12 @@ public class Room extends Property {
         return numberOfDesks;
     }
 
-    public int getstructureCost() {
+    public int getStructureCost() {
         return structureCost;
     }
 
-    public boolean isHasBoard() {
+    public boolean hasBoard() {
         return hasBoard;
-    }
-
-    public int getBoardCost() {
-        return structureCost;
     }
 }
 

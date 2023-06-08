@@ -14,7 +14,7 @@ public class PropertiesPane extends JFrame {
     private ArrayList<Property> properties;
 
     public PropertiesPane(Player player, MainBoard mBoard){
-        properties = player.properties;
+        properties = player.getProperties();
         scrollContainer.setLayout(new BoxLayout(scrollContainer, BoxLayout.Y_AXIS));
 
         for(Property p :properties){

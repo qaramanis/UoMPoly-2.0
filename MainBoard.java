@@ -17,7 +17,6 @@ public class MainBoard extends JFrame {
     private JPanel dice;
     private JLabel diceNumbers;
     private JPanel bottomButtons;
-    private JButton jailDiceBtn;
     private JPanel tooltips;
     private JPanel tooltipLeft;
     private JLabel currentPos;
@@ -28,8 +27,11 @@ public class MainBoard extends JFrame {
     private JButton buyPropBtn;
     private JButton endTurnBtn;
     private JLabel boardLabel;
+    private JPanel topMiddle2;
+    private JLabel outOfJailCardsLabel;
 
     private Player currentPlayer;
+    private int[] currentDice;
 
     private GameBoard gBoard;
 
@@ -85,9 +87,22 @@ public class MainBoard extends JFrame {
         jailCardBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(currentPlayer.outOfJailCards > 0){
-                    currentPlayer.outOfJailCards--;
+                if(currentPlayer.getOutOfJailCards() > 0){
+                    currentPlayer.decreaseGetOutOfJailCards();
                     Jail.removeFromJail(currentPlayer);
+                }
+            }
+        });
+        jailPayBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (currentPlayer.getBalance() >= 50) {
+                    Jail.removeFromJail(currentPlayer);
+                    currentPlayer.decreaseBalance(50);
+                    GameBoard.movePlayer(currentPlayer, currentDice[0] + currentDice[1], true);
+                    updateInfo(currentPlayer);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Τα λεφτά σου δεν επαρκούν για να βγεις από την φυλακή!", "Φυλακή", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -98,7 +113,6 @@ public class MainBoard extends JFrame {
         endTurnBtn.setVisible(false);
         jailPayBtn.setVisible(false);
         jailCardBtn.setVisible(false);
-        jailDiceBtn.setVisible(false);
 
         switch (currentState){
             case NO_BTNS:
@@ -113,9 +127,8 @@ public class MainBoard extends JFrame {
                 jailPayBtn.setVisible(true);
                 jailCardBtn.setVisible(true);
                 jailCardBtn.setEnabled(false);
-                jailDiceBtn.setVisible(true);
                 bottomButtons.setVisible(true);
-                if(currentPlayer.outOfJailCards > 0) jailCardBtn.setEnabled(true);
+                if(currentPlayer.getOutOfJailCards() > 0) jailCardBtn.setEnabled(true);
             default:
                 bottomButtons.setVisible(true);
                 endTurnBtn.setVisible(true);
@@ -124,8 +137,12 @@ public class MainBoard extends JFrame {
     }
 
     public void updatePos(){
-        currentPos.setText(currentPlayer.currentBlock.blockPosition + 1 + " - " + currentPlayer.currentBlock.getBlockTitle());
+        int pos = currentPlayer.getCurrentBlock().getBlockPosition();
+        String posTitle = currentPlayer.getCurrentBlock().getBlockTitle();
 
+        if(pos == 10 && !Jail.isInJail(currentPlayer)) posTitle = currentPlayer.getCurrentBlock().getBlockTitle() + " (Μόνο για επίσκεψη)";
+
+        currentPos.setText((pos + 1) + " - " + posTitle);
         updateScreenState();
         updateBoardImage();
 
@@ -134,6 +151,7 @@ public class MainBoard extends JFrame {
     public void updatePlayer(Player currPlayer){
         currentPlayer = currPlayer;
         playerNumber.setText(Integer.toString(currPlayer.getPlayerID()));
+        outOfJailCardsLabel.setText(currentPlayer.getOutOfJailCards() + "");
         updateBalance(currPlayer.getBalance());
         updatePos();
     }
@@ -147,12 +165,22 @@ public class MainBoard extends JFrame {
         updateScreenState();
     }
 
-    public void updateDice(int[] dice){
-        diceNumbers.setText(dice[0] + " - " + dice[1]);
+    public void updateEndTurnEnabled(boolean val){
+        endTurnBtn.setEnabled(val);
+    }
+
+    public void updateDice(int[] dice, boolean loading){
+         if(loading)
+             diceNumbers.setText(". . .");
+         else {
+             currentDice = dice;
+             diceNumbers.setText(dice[0] + " - " + dice[1]);
+         }
+
     }
 
     public void updateBoardImage(){
-        int currentPos = currentPlayer.currentBlock.blockPosition;
+        int currentPos = currentPlayer.getCurrentBlock().getBlockPosition();
         if(0 <= currentPos && currentPos <= 10) boardLabel.setIcon(new ImageIcon("./resources/0-10Board.png"));
         if(11 <= currentPos && currentPos <= 20) boardLabel.setIcon(new ImageIcon("./resources/11-20Board.png"));
         if(21 <= currentPos && currentPos <= 30) boardLabel.setIcon(new ImageIcon("./resources/21-30Board.png"));
@@ -160,20 +188,20 @@ public class MainBoard extends JFrame {
     }
 
     public void updateScreenState(){
-        Block currBlock = currentPlayer.currentBlock;
+        Block currBlock = currentPlayer.getCurrentBlock();
         if(currBlock instanceof Property prop){
             if(prop.getOwner() == null){
                 currentState = ScreenState.UNOWNED_PROPERTY;
-                handleScreenState();
             }else{
                 currentState = ScreenState.DEFAULT;
-                handleScreenState();
             }
         }
-        if(Jail.isInJail(currentPlayer)) {
+        else if(Jail.isInJail(currentPlayer)) {
             currentState = ScreenState.JAILED;
-            handleScreenState();
-        }
+
+        }else currentState = ScreenState.DEFAULT;
+
+        handleScreenState();
     }
 
     public void setgBoard(GameBoard gBoard){
