@@ -6,4 +6,4 @@ This repository contains the the UoMPoly Game build in Java as a project for the
 
 ## Notes
 
-The application can only be run using intellij or the packaged jar(not sure about that), because some of the UI elements use intellij's swing gui designer.
+The application can only be run if you add the [external library](lib/forms_rt.jar) to your project.
