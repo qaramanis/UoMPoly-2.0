@@ -1,3 +1,10 @@
+package src.main.java.gui;
+
+import src.main.java.files.Property;
+import src.main.java.files.Room;
+import src.main.java.files.Service;
+import src.main.java.files.Transport;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.FontUIResource;
@@ -5,7 +12,6 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class PropertyCard extends JPanel {
@@ -85,13 +91,13 @@ public class PropertyCard extends JPanel {
         mortgageBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (prop.isMortgaged) {
+                if (prop.isMortgaged()) {
                     prop.unmortgageProperty();
                 } else {
                     prop.mortgageProperty();
                 }
                 updateMortgageInfo();
-                mBoard.updatePlayer(prop.owner);
+                mBoard.updatePlayer(prop.getOwner());
             }
         });
         buyDeskBtn.addActionListener(new ActionListener() {
@@ -99,7 +105,7 @@ public class PropertyCard extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 ((Room) prop).buildDesk();
                 updateNumberOfDesks();
-                mBoard.updatePlayer(prop.owner);
+                mBoard.updatePlayer(prop.getOwner());
             }
         });
         sellDeskBtn.addActionListener(new ActionListener() {
@@ -107,7 +113,7 @@ public class PropertyCard extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 ((Room) prop).sellDesk();
                 updateNumberOfDesks();
-                mBoard.updatePlayer(prop.owner);
+                mBoard.updatePlayer(prop.getOwner());
             }
         });
         buyBoardBtn.addActionListener(new ActionListener() {
@@ -115,7 +121,7 @@ public class PropertyCard extends JPanel {
             public void actionPerformed(ActionEvent actionEvent) {
                 ((Room) prop).buildBoard();
                 updateHasBoard();
-                mBoard.updatePlayer(prop.owner);
+                mBoard.updatePlayer(prop.getOwner());
             }
         });
         sellBoardBtn.addActionListener(new ActionListener() {
@@ -123,7 +129,7 @@ public class PropertyCard extends JPanel {
             public void actionPerformed(ActionEvent actionEvent) {
                 ((Room) prop).sellBoard();
                 updateHasBoard();
-                mBoard.updatePlayer(prop.owner);
+                mBoard.updatePlayer(prop.getOwner());
             }
         });
     }

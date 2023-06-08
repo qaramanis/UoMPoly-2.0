@@ -1,3 +1,7 @@
+package src.main.java.gui;
+
+import src.main.java.files.*;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.FontUIResource;
