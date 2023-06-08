@@ -101,14 +101,14 @@ public class BuyPropertyScreen extends JFrame {
         panel2.add(bottomPanel, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_SOUTH, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         buyBtn = new JButton();
         buyBtn.setBackground(new Color(-1));
-        Font buyBtnFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, buyBtn.getFont());
+        Font buyBtnFont = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, buyBtn.getFont());
         if (buyBtnFont != null) buyBtn.setFont(buyBtnFont);
         buyBtn.setForeground(new Color(-16777216));
         buyBtn.setText("Αγορά");
         bottomPanel.add(buyBtn, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cancelBtn = new JButton();
         cancelBtn.setBackground(new Color(-1));
-        Font cancelBtnFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, cancelBtn.getFont());
+        Font cancelBtnFont = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, cancelBtn.getFont());
         if (cancelBtnFont != null) cancelBtn.setFont(cancelBtnFont);
         cancelBtn.setForeground(new Color(-16777216));
         cancelBtn.setText("Άκυρο");
@@ -118,7 +118,7 @@ public class BuyPropertyScreen extends JFrame {
         panel2.add(centerPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         list1 = new JList();
         list1.setBackground(new Color(-1));
-        Font list1Font = this.$$$getFont$$$("Inter", Font.PLAIN, 14, list1.getFont());
+        Font list1Font = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, list1.getFont());
         if (list1Font != null) list1.setFont(list1Font);
         list1.setForeground(new Color(-16777216));
         final DefaultListModel defaultListModel1 = new DefaultListModel();
@@ -135,12 +135,12 @@ public class BuyPropertyScreen extends JFrame {
         panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         centerPanel.add(panel3, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        Font label1Font = this.$$$getFont$$$("Inter", -1, 16, label1.getFont());
+        Font label1Font = this.$$$getFonts$$$("Inter", -1, 16, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setText("Ιδιοκτησία:");
         panel3.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         propertyNameLabel = new JLabel();
-        Font propertyNameLabelFont = this.$$$getFont$$$("Inter Medium", -1, 16, propertyNameLabel.getFont());
+        Font propertyNameLabelFont = this.$$$getFonts$$$("Inter Medium", -1, 16, propertyNameLabel.getFont());
         if (propertyNameLabelFont != null) propertyNameLabel.setFont(propertyNameLabelFont);
         propertyNameLabel.setText("");
         panel3.add(propertyNameLabel, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -148,14 +148,14 @@ public class BuyPropertyScreen extends JFrame {
         serviceDisclaimers.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         centerPanel.add(serviceDisclaimers, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        Font label2Font = this.$$$getFont$$$("Inter", Font.PLAIN, 14, label2.getFont());
+        Font label2Font = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
         label2.setHorizontalAlignment(2);
         label2.setHorizontalTextPosition(2);
         label2.setText("<html>Αν έχεις στην κατοχή σου μία μόνο υπηρεσία, το ενοίκιο είναι 4 φορές <br/> ο αριθμός που έφεραν τα ζάρια.</html>");
         serviceDisclaimers.add(label2, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
-        Font label3Font = this.$$$getFont$$$("Inter", Font.PLAIN, 14, label3.getFont());
+        Font label3Font = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
         label3.setHorizontalAlignment(2);
         label3.setHorizontalTextPosition(2);
@@ -166,7 +166,7 @@ public class BuyPropertyScreen extends JFrame {
     /**
      * @noinspection ALL
      */
-    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
+    private Font $$$getFonts$$$(String fontName, int style, int size, Font currentFont) {
         if (currentFont == null) return null;
         String resultName;
         if (fontName == null) {
