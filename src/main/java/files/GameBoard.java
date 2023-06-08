@@ -1,6 +1,6 @@
-package src.main.java.files;
+package files;
 
-import src.main.java.gui.MainBoard;
+import gui.MainBoard;
 
 import javax.swing.*;
 import java.util.*;

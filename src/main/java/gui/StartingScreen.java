@@ -1,6 +1,6 @@
-package src.main.java.gui;
+package gui;
 
-import src.main.java.files.GameBoard;
+import files.GameBoard;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;

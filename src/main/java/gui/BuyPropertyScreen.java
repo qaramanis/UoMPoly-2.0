@@ -1,6 +1,6 @@
-package src.main.java.gui;
+package gui;
 
-import src.main.java.files.*;
+import files.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

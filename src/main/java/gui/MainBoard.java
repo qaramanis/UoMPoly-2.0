@@ -1,6 +1,6 @@
-package src.main.java.gui;
+package gui;
 
-import src.main.java.files.*;
+import files.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -387,10 +387,10 @@ public class MainBoard extends JFrame {
 
     public void updateBoardImage() {
         int currentPos = currentPlayer.getCurrentBlock().getBlockPosition();
-        if (0 <= currentPos && currentPos <= 10) boardLabel.setIcon(new ImageIcon(getClass().getResource("../../resources/0-10Board.png")));
-        if (11 <= currentPos && currentPos <= 20) boardLabel.setIcon(new ImageIcon(getClass().getResource("../../resources/11-20Board.png")));
-        if (21 <= currentPos && currentPos <= 30) boardLabel.setIcon(new ImageIcon(getClass().getResource("../../resources/21-30Board.png")));
-        if (31 <= currentPos && currentPos <= 39) boardLabel.setIcon(new ImageIcon(getClass().getResource("../../resources/31-39Board.png")));
+        if (0 <= currentPos && currentPos <= 10) boardLabel.setIcon(new ImageIcon(getClass().getResource("/0-10Board.png")));
+        if (11 <= currentPos && currentPos <= 20) boardLabel.setIcon(new ImageIcon(getClass().getResource("/11-20Board.png")));
+        if (21 <= currentPos && currentPos <= 30) boardLabel.setIcon(new ImageIcon(getClass().getResource("/21-30Board.png")));
+        if (31 <= currentPos && currentPos <= 39) boardLabel.setIcon(new ImageIcon(getClass().getResource("/31-39Board.png")));
     }
 
     public void updateScreenState() {

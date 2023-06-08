@@ -1,4 +1,4 @@
-package src.main.java.files;
+package files;
 
 public class Transport extends Property {
 

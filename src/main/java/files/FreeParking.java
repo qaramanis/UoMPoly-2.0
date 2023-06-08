@@ -1,4 +1,4 @@
-package src.main.java.files;
+package files;
 
 public class FreeParking extends Block{
     public FreeParking(int position, String title){

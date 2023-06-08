@@ -1,7 +1,7 @@
-package src.main.java.gui;
+package gui;
 
-import src.main.java.files.Player;
-import src.main.java.files.Property;
+import files.Player;
+import files.Property;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;

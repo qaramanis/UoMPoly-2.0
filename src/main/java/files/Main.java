@@ -1,6 +1,6 @@
-package src.main.java.files;
+package files;
 
-import src.main.java.gui.StartingScreen;
+import gui.StartingScreen;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,9 +1,9 @@
-package src.main.java.gui;
+package gui;
 
-import src.main.java.files.Property;
-import src.main.java.files.Room;
-import src.main.java.files.Service;
-import src.main.java.files.Transport;
+import files.Property;
+import files.Room;
+import files.Service;
+import files.Transport;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
