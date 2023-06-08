@@ -7,7 +7,7 @@ public class Service extends Property {
     public int calculateRent(int[] dice) {
         int numberOfServiceProperties = 0;
         int diceTotal = dice[0] + dice[1];
-        for (Property p : this.owner.properties) {
+        for (Property p : this.owner.getProperties()) {
             if (p instanceof Service)
                 numberOfServiceProperties++;
         }

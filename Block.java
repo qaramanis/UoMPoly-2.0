@@ -1,5 +1,5 @@
 abstract class Block {
-    public int blockPosition;
+    private int blockPosition;
 
     private String blockTitle;
     public Block(int position, String title) {
@@ -11,5 +11,7 @@ abstract class Block {
         return blockTitle;
     }
 
-
+    public int getBlockPosition() {
+        return blockPosition;
+    }
 }

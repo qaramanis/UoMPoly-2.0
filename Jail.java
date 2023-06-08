@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 public class Jail extends Block{
-    static ArrayList<Player> playersInJail = new ArrayList<>();
+    private static ArrayList<Player> playersInJail = new ArrayList<>();
 
     public Jail (int position, String title){
         super(position, title);
 
     }
 
-    static boolean isInJail(Player player){
+    public static boolean isInJail(Player player){
         boolean result = false;
         for(Player p : playersInJail){
             if(player.equals(p))
@@ -17,12 +17,13 @@ public class Jail extends Block{
         return result;
     }
 
-    static void sendToJail(Player player){
+    public static void sendToJail(Player player){
         playersInJail.add(player);
-        GameBoard.movePlayer(player,30, false); //jail is on no. 30
+        GameBoard.movePlayer(player,10, false); //jail is on no. 10
+        GameBoard.setTurnActive(false);
     }
 
-    static void removeFromJail(Player player){
+    public static void removeFromJail(Player player){
         playersInJail.remove(player);
     }
 

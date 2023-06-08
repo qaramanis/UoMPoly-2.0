@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,29 +23,31 @@ public class PropertyCard extends JPanel {
     private JButton mortgageBtn;
     private JLabel hasBoardLabel;
     private JPanel serviceDisclaimers;
+    private JPanel colorPanel;
 
     private Property prop;
     MainBoard mBoard;
     private DefaultListModel<String> propAttributes;
-    public PropertyCard(Property prop, MainBoard mBoard){
+
+    public PropertyCard(Property prop, MainBoard mBoard) {
         super();
         this.prop = prop;
         this.mBoard = mBoard;
         propAttributes = new DefaultListModel<String>();
 
-        if(prop instanceof Room r){
-            propAttributes.addElement("Τιμή: " + r.cost);
+        if (prop instanceof Room r) {
+            propAttributes.addElement("Τιμή: " + r.getCost());
             propAttributes.addElement("Ενοίκιο: " + r.getRent());
             propAttributes.addElement("Ενοίκιο με 1 έδρανο: " + r.getRentWithOneDesk());
             propAttributes.addElement("Ενοίκιο με 2 έδρανα: " + r.getRentWithTwoDesks());
             propAttributes.addElement("Ενοίκιο με 3 έδρανα: " + r.getRentWithThreeDesks());
             propAttributes.addElement("Ενοίκιο με 4 έδρανα: " + r.getRentWithFourDesks());
             propAttributes.addElement("Ενοίκιο με πίνακα: " + r.getRentWithBoard());
-            numberOfDesksLabel.setText(Integer.toString(r.numberOfDesks));
+            numberOfDesksLabel.setText(Integer.toString(r.getNumberOfDesks()));
             serviceDisclaimers.setVisible(false);
         }
-        if(prop instanceof Transport transp){
-            propAttributes.addElement("Τιμή: " + transp.cost);
+        if (prop instanceof Transport transp) {
+            propAttributes.addElement("Τιμή: " + transp.getCost());
             propAttributes.addElement("Ενοίκιο: " + transp.rentWithOneTransportProperty);
             propAttributes.addElement("Ενοίκιο αν κατέχεις 2 ανελκυστήρες: " + transp.rentWithTwoTransportProperties);
             propAttributes.addElement("Ενοίκιο αν κατέχεις 3 ανελκυστήρες: " + transp.rentWithThreeTransportProperties);
@@ -54,8 +57,8 @@ public class PropertyCard extends JPanel {
             desksWrapper.setVisible(false);
             boardsWrapper.setVisible(false);
         }
-        if(prop instanceof Service serv){
-            propAttributes.addElement("Τιμή: " + serv.cost);
+        if (prop instanceof Service serv) {
+            propAttributes.addElement("Τιμή: " + serv.getCost());
             list1.setVisible(false);
             wholeCGroupDisclaimer.setVisible(false);
             desksWrapper.setVisible(false);
@@ -67,7 +70,10 @@ public class PropertyCard extends JPanel {
         updateMortgageInfo();
         updateHasBoard();
         propertyNameLabel.setText(prop.getBlockTitle());
-        mortgageValueLabel.setText(prop.mortgageValue + "");
+        Color myColor = Color.decode(getColorOfProp());
+        colorPanel.setBackground(myColor);
+        if(!(prop instanceof Room)) colorPanel.setVisible(false);
+        mortgageValueLabel.setText(prop.getMortgageValue() + "");
 
         add(panel1);
         panel1.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -76,9 +82,9 @@ public class PropertyCard extends JPanel {
         mortgageBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(prop.isMortgaged){
+                if (prop.isMortgaged) {
                     prop.unmortgageProperty();
-                }else {
+                } else {
                     prop.mortgageProperty();
                 }
                 updateMortgageInfo();
@@ -88,7 +94,7 @@ public class PropertyCard extends JPanel {
         buyDeskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ((Room)prop).buildDesk();
+                ((Room) prop).buildDesk();
                 updateNumberOfDesks();
                 mBoard.updatePlayer(prop.owner);
             }
@@ -96,7 +102,7 @@ public class PropertyCard extends JPanel {
         sellDeskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ((Room)prop).sellDesk();
+                ((Room) prop).sellDesk();
                 updateNumberOfDesks();
                 mBoard.updatePlayer(prop.owner);
             }
@@ -104,7 +110,7 @@ public class PropertyCard extends JPanel {
         buyBoardBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ((Room)prop).buildBoard();
+                ((Room) prop).buildBoard();
                 updateHasBoard();
                 mBoard.updatePlayer(prop.owner);
             }
@@ -112,28 +118,54 @@ public class PropertyCard extends JPanel {
         sellBoardBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ((Room)prop).sellBoard();
+                ((Room) prop).sellBoard();
                 updateHasBoard();
                 mBoard.updatePlayer(prop.owner);
             }
         });
     }
 
-    private void updateMortgageInfo(){
-        if(prop.isMortgaged()){
+    private void updateMortgageInfo() {
+        if (prop.isMortgaged()) {
             mortgageBtn.setText("Άρση Υποθήκευσης");
-        }else {
+        } else {
             mortgageBtn.setText("Υποθήκευση Ιδιοκτησίας");
         }
     }
 
-    private void updateNumberOfDesks(){
-      if(prop instanceof  Room r) numberOfDesksLabel.setText(r.numberOfDesks + "");
+    private String getColorOfProp() {
+        if (prop instanceof Room r) {
+            switch (r.getColor()) {
+                case "brown":
+                    return "#5A2E23";
+                case "light_blue":
+                    return "#95B8CB";
+                case "magenta":
+                    return "#952C55";
+                case "orange":
+                    return "#BB6626";
+                case "red":
+                    return "#AB3028";
+                case "yellow":
+                    return "#D5C119";
+                case "green":
+                    return "#00882D";
+                case "dark_blue":
+                    return "#0051A9";
+
+            }
+        }
+        return "#000000";
     }
-    private void updateHasBoard(){
-        if(prop instanceof  Room r) {
+
+    private void updateNumberOfDesks() {
+        if (prop instanceof Room r) numberOfDesksLabel.setText(r.getNumberOfDesks() + "");
+    }
+
+    private void updateHasBoard() {
+        if (prop instanceof Room r) {
             String hasBoardText = "Όχι";
-            if (r.hasBoard) hasBoardText = "Ναι";
+            if (r.hasBoard()) hasBoardText = "Ναι";
             hasBoardLabel.setText(hasBoardText);
         }
     }
