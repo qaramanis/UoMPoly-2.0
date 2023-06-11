@@ -73,12 +73,12 @@ public class MainBoard extends JFrame {
         topLeft.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         top.add(topLeft, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        Font label1Font = this.$$$getFonts$$$("Inter", -1, 14, label1.getFont());
+        Font label1Font = this.$$$getFont$$$("Inter", -1, 14, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setText("Παίκτης: ");
         topLeft.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         playerNumber = new JLabel();
-        Font playerNumberFont = this.$$$getFonts$$$("Inter", -1, 16, playerNumber.getFont());
+        Font playerNumberFont = this.$$$getFont$$$("Inter", -1, 16, playerNumber.getFont());
         if (playerNumberFont != null) playerNumber.setFont(playerNumberFont);
         playerNumber.setText("");
         topLeft.add(playerNumber, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -86,12 +86,12 @@ public class MainBoard extends JFrame {
         topMiddle.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(0, 15, 0, 0), -1, -1));
         top.add(topMiddle, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        Font label2Font = this.$$$getFonts$$$("Inter", -1, 14, label2.getFont());
+        Font label2Font = this.$$$getFont$$$("Inter", -1, 14, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
         label2.setText("Πορτοφόλι: ");
         topMiddle.add(label2, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         currentBalance = new JLabel();
-        Font currentBalanceFont = this.$$$getFonts$$$("Inter", -1, 16, currentBalance.getFont());
+        Font currentBalanceFont = this.$$$getFont$$$("Inter", -1, 16, currentBalance.getFont());
         if (currentBalanceFont != null) currentBalance.setFont(currentBalanceFont);
         currentBalance.setText("");
         topMiddle.add(currentBalance, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -99,12 +99,12 @@ public class MainBoard extends JFrame {
         topMiddle2.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 15, 0, 0), -1, -1));
         topMiddle.add(topMiddle2, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
-        Font label3Font = this.$$$getFonts$$$("Inter", -1, 14, label3.getFont());
+        Font label3Font = this.$$$getFont$$$("Inter", -1, 14, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
         label3.setText("Κάρτες Βγες από την φυλακή: ");
         topMiddle2.add(label3, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         outOfJailCardsLabel = new JLabel();
-        Font outOfJailCardsLabelFont = this.$$$getFonts$$$("Inter", -1, 16, outOfJailCardsLabel.getFont());
+        Font outOfJailCardsLabelFont = this.$$$getFont$$$("Inter", -1, 16, outOfJailCardsLabel.getFont());
         if (outOfJailCardsLabelFont != null) outOfJailCardsLabel.setFont(outOfJailCardsLabelFont);
         outOfJailCardsLabel.setText("");
         topMiddle2.add(outOfJailCardsLabel, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -113,7 +113,7 @@ public class MainBoard extends JFrame {
         top.add(topRight, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         propertyBtn = new JButton();
         propertyBtn.setBackground(new Color(-1));
-        Font propertyBtnFont = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, propertyBtn.getFont());
+        Font propertyBtnFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, propertyBtn.getFont());
         if (propertyBtnFont != null) propertyBtn.setFont(propertyBtnFont);
         propertyBtn.setForeground(new Color(-16777216));
         propertyBtn.setText("Οι ιδιοκτησίες μου");
@@ -125,7 +125,7 @@ public class MainBoard extends JFrame {
         boardLabel.setEnabled(true);
         boardLabel.setHorizontalAlignment(0);
         boardLabel.setHorizontalTextPosition(0);
-        boardLabel.setIcon(new ImageIcon(getClass().getResource("/resources/0-10Board.png")));
+        boardLabel.setIcon(new ImageIcon(getClass().getResource("/0-10Board.png")));
         boardLabel.setText("");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
@@ -143,12 +143,12 @@ public class MainBoard extends JFrame {
         dice.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         bottom.add(dice, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
-        Font label4Font = this.$$$getFonts$$$("Inter Medium", -1, 16, label4.getFont());
+        Font label4Font = this.$$$getFont$$$("Inter Medium", -1, 16, label4.getFont());
         if (label4Font != null) label4.setFont(label4Font);
         label4.setText("Ζάρια: ");
         dice.add(label4, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         diceNumbers = new JLabel();
-        Font diceNumbersFont = this.$$$getFonts$$$("Inter", -1, 16, diceNumbers.getFont());
+        Font diceNumbersFont = this.$$$getFont$$$("Inter", -1, 16, diceNumbers.getFont());
         if (diceNumbersFont != null) diceNumbers.setFont(diceNumbersFont);
         diceNumbers.setText("");
         dice.add(diceNumbers, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -158,7 +158,7 @@ public class MainBoard extends JFrame {
         buyPropBtn = new JButton();
         buyPropBtn.setBackground(new Color(-1));
         buyPropBtn.setEnabled(true);
-        Font buyPropBtnFont = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, buyPropBtn.getFont());
+        Font buyPropBtnFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, buyPropBtn.getFont());
         if (buyPropBtnFont != null) buyPropBtn.setFont(buyPropBtnFont);
         buyPropBtn.setForeground(new Color(-16777216));
         buyPropBtn.setHideActionText(false);
@@ -167,7 +167,7 @@ public class MainBoard extends JFrame {
         jailPayBtn = new JButton();
         jailPayBtn.setBackground(new Color(-1));
         jailPayBtn.setEnabled(true);
-        Font jailPayBtnFont = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, jailPayBtn.getFont());
+        Font jailPayBtnFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, jailPayBtn.getFont());
         if (jailPayBtnFont != null) jailPayBtn.setFont(jailPayBtnFont);
         jailPayBtn.setForeground(new Color(-16777216));
         jailPayBtn.setHideActionText(false);
@@ -176,7 +176,7 @@ public class MainBoard extends JFrame {
         jailCardBtn = new JButton();
         jailCardBtn.setBackground(new Color(-1));
         jailCardBtn.setEnabled(true);
-        Font jailCardBtnFont = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, jailCardBtn.getFont());
+        Font jailCardBtnFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, jailCardBtn.getFont());
         if (jailCardBtnFont != null) jailCardBtn.setFont(jailCardBtnFont);
         jailCardBtn.setForeground(new Color(-16777216));
         jailCardBtn.setHideActionText(false);
@@ -185,7 +185,7 @@ public class MainBoard extends JFrame {
         endTurnBtn = new JButton();
         endTurnBtn.setBackground(new Color(-1));
         endTurnBtn.setEnabled(true);
-        Font endTurnBtnFont = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, endTurnBtn.getFont());
+        Font endTurnBtnFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, endTurnBtn.getFont());
         if (endTurnBtnFont != null) endTurnBtn.setFont(endTurnBtnFont);
         endTurnBtn.setForeground(new Color(-16777216));
         endTurnBtn.setHideActionText(false);
@@ -198,12 +198,12 @@ public class MainBoard extends JFrame {
         tooltipLeft.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 5));
         tooltips.add(tooltipLeft, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
-        Font label5Font = this.$$$getFonts$$$("Inter Medium", -1, 22, label5.getFont());
+        Font label5Font = this.$$$getFont$$$("Inter Medium", -1, 22, label5.getFont());
         if (label5Font != null) label5.setFont(label5Font);
         label5.setText("Θέση: ");
         tooltipLeft.add(label5);
         currentPos = new JLabel();
-        Font currentPosFont = this.$$$getFonts$$$("Inter", -1, 16, currentPos.getFont());
+        Font currentPosFont = this.$$$getFont$$$("Inter", -1, 16, currentPos.getFont());
         if (currentPosFont != null) currentPos.setFont(currentPosFont);
         currentPos.setText("");
         tooltipLeft.add(currentPos);
@@ -218,7 +218,7 @@ public class MainBoard extends JFrame {
     /**
      * @noinspection ALL
      */
-    private Font $$$getFonts$$$(String fontName, int style, int size, Font currentFont) {
+    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
         if (currentFont == null) return null;
         String resultName;
         if (fontName == null) {
@@ -387,10 +387,14 @@ public class MainBoard extends JFrame {
 
     public void updateBoardImage() {
         int currentPos = currentPlayer.getCurrentBlock().getBlockPosition();
-        if (0 <= currentPos && currentPos <= 10) boardLabel.setIcon(new ImageIcon(getClass().getResource("/0-10Board.png")));
-        if (11 <= currentPos && currentPos <= 20) boardLabel.setIcon(new ImageIcon(getClass().getResource("/11-20Board.png")));
-        if (21 <= currentPos && currentPos <= 30) boardLabel.setIcon(new ImageIcon(getClass().getResource("/21-30Board.png")));
-        if (31 <= currentPos && currentPos <= 39) boardLabel.setIcon(new ImageIcon(getClass().getResource("/31-39Board.png")));
+        if (0 <= currentPos && currentPos <= 10)
+            boardLabel.setIcon(new ImageIcon(getClass().getResource("/0-10Board.png")));
+        if (11 <= currentPos && currentPos <= 20)
+            boardLabel.setIcon(new ImageIcon(getClass().getResource("/11-20Board.png")));
+        if (21 <= currentPos && currentPos <= 30)
+            boardLabel.setIcon(new ImageIcon(getClass().getResource("/21-30Board.png")));
+        if (31 <= currentPos && currentPos <= 39)
+            boardLabel.setIcon(new ImageIcon(getClass().getResource("/31-39Board.png")));
     }
 
     public void updateScreenState() {

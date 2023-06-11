@@ -1,5 +1,3 @@
-package files;
-
 import gui.StartingScreen;
 
 public class Main {

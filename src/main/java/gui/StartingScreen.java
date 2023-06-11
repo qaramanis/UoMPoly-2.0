@@ -59,14 +59,14 @@ public class StartingScreen extends JFrame {
         panel2.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(60, 0, 0, 0), -1, -1));
         panel1.add(panel2, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_NORTH, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setIcon(new ImageIcon(getClass().getResource("/resources/UoMPolyLogo.png")));
+        label1.setIcon(new ImageIcon(getClass().getResource("/UoMPolyLogo.png")));
         label1.setText("");
         panel2.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), 15, -1));
         panel1.add(panel3, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        Font label2Font = this.$$$getFonts$$$("Inter Medium", -1, 18, label2.getFont());
+        Font label2Font = this.$$$getFont$$$("Inter Medium", -1, 18, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
         label2.setText("Αριθμός Παιχτών");
         panel3.add(label2, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -78,7 +78,7 @@ public class StartingScreen extends JFrame {
         panel1.add(panel4, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         startBtn = new JButton();
         startBtn.setBackground(new Color(-1));
-        Font startBtnFont = this.$$$getFonts$$$("Inter", Font.PLAIN, 14, startBtn.getFont());
+        Font startBtnFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, startBtn.getFont());
         if (startBtnFont != null) startBtn.setFont(startBtnFont);
         startBtn.setForeground(new Color(-16777216));
         startBtn.setText("Έναρξη Παιχνιδιού");
@@ -88,7 +88,7 @@ public class StartingScreen extends JFrame {
     /**
      * @noinspection ALL
      */
-    private Font $$$getFonts$$$(String fontName, int style, int size, Font currentFont) {
+    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
         if (currentFont == null) return null;
         String resultName;
         if (fontName == null) {

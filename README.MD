@@ -2,8 +2,12 @@
 
 # UoMPoly 2.0
 
-This repository contains the the UoMPoly Game build in Java as a project for the Software Engineering Subject at University of Macedonia
+This repository contains the UoMPoly Game build in Java as a project for the Software Engineering Subject at University of Macedonia
 
 ## Notes
 
-The application can only be run if you add the [external library](lib/forms_rt.jar) to your project.
+The application can only be run if you add the [external library](lib/forms_rt.jar) to your project. 
+
+And the jar needs [JDK Version 20](https://www.oracle.com/java/technologies/downloads/#jdk20-windows) to be installed.
+
+
